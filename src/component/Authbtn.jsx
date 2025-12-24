@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import icon from '../assets/upqk2y.png'
 
+
 // FiEdit → pencil/edit icon
 // FiPlusCircle → plus inside a circle
 
@@ -13,7 +14,7 @@ function AuthBtn(elem){
                     ? "bg-btncolorD/70 hover:bg-btncolorD text-white hover:border-logo hover:border"
                     : "bg-gray-100 hover:bg-gray-200 hover:border-logo2 hover:border"
                     } hidden md:block lg:block`}
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/detail")}
                 >
                 <p className="flex items-center gap-2">
                     Post 

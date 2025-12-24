@@ -1,68 +1,19 @@
-
 import { useState  } from "react";
-import { HiDotsHorizontal } from "react-icons/hi";
-import { FiSun, FiMoon } from "react-icons/fi";
-import Search from './component/search'
 import Card from './card'
 import Vcard from './VideoCard'
 import { FiMenu } from "react-icons/fi";
 import SideBar from './Sidebar'
-import Btn from './component/Btn'
-import ProgressBar from "./component/progessbarTop";
-import AuthIcon from './component/Authbtn'
 import { useTheme } from "./theme/useTheme";
+import Navbar from "./Navbar";
 
 function Home(e) {
     const [collapsed, setCollapsed] = useState(false);
-    const [logoutTrigger, setLogoutTrigger] = useState(false);
-    const handleLogout = () => {
-      setLogoutTrigger(true); 
-    };
-    const { dark, toggleTheme } = useTheme();
+    const { dark} = useTheme();
 
   return (
     <div className={`h-screen w-full flex flex-col bg-primaryD light:bg-primary text-white light:text-txPrimary ${!dark?"light":""}`}>
       {/* Navbar */}
-      <ProgressBar trigger={logoutTrigger} onComplete={() => {
-          e.logout(); 
-          setLogoutTrigger(false); // reset trigger
-        }}  theme={dark} />
-      <div className="w-full h-15 border-b light:border-gray-300 border-txSecondary p-1 flex flex-row justify-between items-center">
-        <div className="w-[30%] h-full items-center flex flex-row px-2">
-           <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 48 48">
-              <path 
-                fill={dark ? "#FF6900" : "#8639D3"} 
-                d="M37,42H11c-2.761,0-5-2.239-5-5V11c0-2.761,2.239-5,5-5h26c2.761,0,5,2.239,5,5v26 C42,39.761,39.761,42,37,42z"
-              />
-              <path 
-                fill="#fff" 
-                d="M33.5,22h-1c-0.828,0-1.5-0.672-1.5-1.5V20c0-3.866-3.134-7-7-7h-4c-3.866,0-7,3.134-7,7v8 c0,3.866,3.134,7,7,7h8c3.866,0,7-3.134,7-7v-4.5C35,22.672,34.328,22,33.5,22z M20,19h5c0.553,0,1,0.448,1,1s-0.447,1-1,1h-5 c-0.553,0-1-0.448-1-1S19.447,19,20,19z M28,29h-8c-0.553,0-1-0.448-1-1s0.447-1,1-1h8c0.553,0,1,0.448,1,1S28.553,29,28,29z"
-              />
-            </svg>
-
-            <div className="  font-bold text-2xl pt-1 h-full items-center flex"> Blog<span className={`text-white ${dark?"bg-logo":"bg-logo2"} px-2 rounded-lg`}>Hub</span></div>
-        </div>
-        <div className="w-full flex h-full justify-center ">
-          <Search theme={dark}/>
-        </div>
-        <div className="items-center flex px-3 w-[30%] justify-end">
-            <button
-              onClick={() => toggleTheme()}
-              className={`p-2 rounded-full transition active:scale-95 ${dark?"bg-btncolorD/60 hover:bg-btncolorD":"bg-btncolor/70 hover:bg-btncolor"}`}
-            >
-              {dark ? (
-                <FiSun className="text-yellow-100" size={22} />
-              ) : (
-                <FiMoon className="text-triaryD" size={22} />
-              )}
-            </button>
-            {!e.isAuth?(<Btn theme={dark}/>):(<AuthIcon theme={dark}/>)}
-            <button className={`p-1 px-2 rounded-4xl active:scale-95 ${dark?"bg-btncolorD/60 hover:bg-btncolorD text-white":"bg-btncolor/70 hover:bg-btncolor text-gray-950"} `}
-              onClick={handleLogout}
-            ><HiDotsHorizontal size={22} /></button>
-        </div>
-      </div>
-
+      <Navbar e={e}/>
 
       {/* Content */}
         <div className=" w-full  flex flex-row overflow-hidden"> 
@@ -121,10 +72,56 @@ function Home(e) {
             </div>
 
 
-            {/* recent */}
-            <div className="md:w-[30%] lg:w-[25%] p-5 border-l bg-triaryD border-txSecondary light:border-gray-300 light:bg-primary md:block lg:block hidden">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptas laborum, recusandae est dolor commodi rem placeat tempore officia. Tempore ex aspernatur dolore blanditiis illum error quaerat libero accusantium dolorum, culpa possimus deserunt eveniet vero sapiente fugiat, iste ipsa. Accusantium voluptate officiis illo fugiat adipisci odio consectetur fugit neque labore commodi, architecto laborum facilis libero, illum molestiae et! Amet quibusdam asperiores cumque excepturi ullam ratione officiis? Nostrum, unde magnam officia dicta ad nesciunt enim impedit pariatur, incidunt minus explicabo sed! Maiores alias ex expedita et facilis in magni molestias dolore eos molestiae, rerum dicta qui fugit laudantium culpa ipsum modi?
-            </div>
+            {/* Recent Posts */}
+                  {/* Recent Posts */}
+                <div className="md:w-[30%] lg:w-[25%] p-5 border-l bg-triaryD border-txSecondary light:border-gray-300 light:bg-primary md:block hidden">
+
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-white light:text-txPrimary mb-4 text-center">
+                    Recent
+                  </h3>
+
+                  {/* Logged OUT state */}
+                  {!e.isAuth && (
+                    <div className="h-[60vh] flex items-center justify-center text-center px-4">
+                      <p className="text-sm text-txSecondaryD light:text-txSecondary opacity-80">
+                        No recent activity yet.  
+                        <br />
+                        <span className="text-xs">
+                          Login to see your reading history.
+                        </span>
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Logged IN state */}
+                  {e.isAuth && (
+                    <div className="space-y-4">
+
+                      <div className="flex gap-3 p-3 rounded-xl bg-primaryD/60 light:bg-secondary hover:bg-primaryD/80 transition cursor-pointer">
+                        <img
+                          src="https://picsum.photos/80/80?random=1"
+                          className="w-16 h-16 rounded-lg object-cover"
+                        />
+                        <div>
+                          <h4 className="text-sm font-semibold text-white light:text-txPrimary line-clamp-2">
+                            Understanding React Context API
+                          </h4>
+                          <p className="text-xs text-txSecondaryD light:text-txSecondary line-clamp-2">
+                            Learn how Context API helps manage global state.
+                          </p>
+                          <span className="text-[11px] opacity-70">
+                            Dec 18, 2025
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* more cards */}
+                    </div>
+                  )}
+
+                </div>
+
 
             
         </div>  

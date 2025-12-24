@@ -42,10 +42,10 @@ function BlogCard(elem) {
 
         {/* Actions */}
         <div className="flex gap-3 pt-3">
-          <button className="flex items-center gap-1 px-3 py-1 text-sm rounded-lg light:bg-secondary bg-secondaryD/70 light:hover:bg-gray-200  hover:bg-secondaryD transition">
+          <button className="flex items-center gap-1 px-3 py-1 text-sm rounded-lg text-white light:text-black light:bg-secondary bg-secondaryD/70 light:hover:bg-gray-200  hover:bg-secondaryD transition">
             ❤️ 245
           </button>
-          <button className="flex items-center gap-1 px-3 py-1 text-sm rounded-lg light:bg-secondary bg-secondaryD/70 light:hover:bg-gray-200  hover:bg-secondaryD  transition">
+          <button className="flex items-center gap-1 px-3 py-1 text-sm rounded-lg text-white light:text-black light:bg-secondary bg-secondaryD/70 light:hover:bg-gray-200  hover:bg-secondaryD  transition">
             🔗 Share
           </button>
         </div>

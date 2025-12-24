@@ -1,9 +1,9 @@
 import Home from './home.jsx'
 import SignUp from "./signUp.jsx";
 import Error from "./error.jsx";
-// App.jsx
 import { useState } from "react";
 import {  Routes, Route } from "react-router-dom";
+import Detail from './detail.jsx';
 
 function App() {
 
@@ -26,6 +26,8 @@ function App() {
         <Route path="/" element={<Home isAuth={isAuth} logout={logout} />} />
         <Route path="/auth" element={<SignUp login={login} />} />
         <Route path="*" element={<Error />}/>
+        <Route path="/detail" element={<Detail isAuth={isAuth} />}/>
+
       </Routes>
   );
 }
