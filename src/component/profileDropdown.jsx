@@ -1,0 +1,82 @@
+import { useState, useRef, useEffect } from "react";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { useTheme } from "../theme/useTheme";
+import icon from "../assets/upqk2y.png"; // replace with actual user image if available
+
+function ProfileDropdown({ user, onLogout }) {
+  const { dark, toggleTheme } = useTheme();
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Click outside closes dropdown
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={dropdownRef} className="relative">
+      {/* Trigger button */}
+      <button
+        onClick={() => setOpen(!open)}
+        className={`flex items-center justify-center p-2 rounded-full cursor-pointer
+          ${dark ? "bg-btncolorD/60 hover:bg-btncolorD text-white" : "light bg-btncolor/70 hover:bg-btncolor text-gray-950"}`}
+      >
+        <HiDotsHorizontal size={26} />
+      </button>
+
+      {/* Dropdown Panel */}
+      {open && (
+        <div className="absolute right-0 mt-3 w-64 rounded-xl shadow-xl
+          bg-primaryD light:bg-white text-white light:text-txPrimary overflow-hidden z-50">
+
+          {/* Avatar Image */}
+          <div className="flex justify-center mt-5">
+            <img
+              src={icon} // Replace with user image if available
+              alt="Profile"
+              className="h-14 w-14 mt-3 ml-3 rounded-full border-2 border-transparent hover:border-logo light:hover:border-logo2 hover:border-4 transition-all duration-300 object-cover"
+            />
+
+            {/* Account Info */}
+            <div className="px-6 py-5 text-center">
+                <p className="text-lg font-semibold">{user.username}</p>
+                <p className="text-sm opacity-70">{user.email}</p>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-col gap-2 px-2 pb-4">
+            <button
+              className="w-full py-2 text-md font-semibold rounded-lg hover:bg-secondaryD/70 light:hover:bg-gray-100 transition"
+              onClick={() => toggleTheme()}
+            >
+              {dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            </button>
+            <button
+              className="w-full py-2 text-md font-semibold rounded-lg hover:bg-secondaryD/70 light:hover:bg-gray-100 transition"
+            >
+              Settings
+            </button>
+            <button
+              className="w-full py-2 text-md font-semibold rounded-lg hover:bg-logo/30 light:hover:bg-logo2/30 transition"
+              onClick={() => {
+                setOpen(false);
+                onLogout();
+              }}
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default ProfileDropdown;

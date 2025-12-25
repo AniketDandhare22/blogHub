@@ -5,11 +5,11 @@ import { FiMenu } from "react-icons/fi";
 import SideBar from './Sidebar'
 import { useTheme } from "./theme/useTheme";
 import Navbar from "./Navbar";
+import posts from "./data/post.json";
 
 function Home(e) {
     const [collapsed, setCollapsed] = useState(false);
     const { dark} = useTheme();
-
   return (
     <div className={`h-screen w-full flex flex-col bg-primaryD light:bg-primary text-white light:text-txPrimary ${!dark?"light":""}`}>
       {/* Navbar */}
@@ -62,13 +62,17 @@ function Home(e) {
                   </p>
                 </div>
                 <div className={`px-4 py-2 rounded-lg light:text-txSecondary text-txSecondaryD bg-primaryD light:bg-white font-bold`}>
-                  2 posts
+                  {posts.length} posts
                 </div>
               </div>
-              <Card theme={dark}/>
-              <Vcard theme={dark}/>
-              <Card theme={dark}/>
-              <Card theme={dark}/>
+              {posts.map((post) =>
+                post.type === "video" ? (
+                  <Vcard key={post.id} data={post} theme={dark} />
+                ) : (
+                  <Card key={post.id} data={post} theme={dark}  />
+                )
+              )}
+
             </div>
 
 

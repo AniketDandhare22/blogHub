@@ -1,37 +1,93 @@
-import { useNavigate } from "react-router-dom"
-import icon from '../assets/upqk2y.png'
+import { useNavigate } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import icon from '../assets/upqk2y.png';
+import { useTheme } from "../theme/useTheme";
 
+function AuthBtn({ theme, user ,onLogout }) {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+    const { dark} = useTheme();
 
-// FiEdit → pencil/edit icon
-// FiPlusCircle → plus inside a circle
+  // Click outside handler
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-function AuthBtn(elem){
-    const navigate = useNavigate();
-    return (
-        <div className="flex flex-row ml-5 ">
-            <button className={`group px-5 p-1 w-25 flex justify-center items-center active:scale-95 font-bold text-md rounded-lg mx-1 
-                    ${elem.theme
-                    ? "bg-btncolorD/70 hover:bg-btncolorD text-white hover:border-logo hover:border"
-                    : "bg-gray-100 hover:bg-gray-200 hover:border-logo2 hover:border"
-                    } hidden md:block lg:block`}
-                onClick={() => navigate("/detail")}
-                >
-                <p className="flex items-center gap-2">
-                    Post 
-                    <span className="text-2xl font-extrabold transition-transform -mt-1 duration-300 transform group-hover:rotate-45">
-                    +
-                    </span>
-                </p>
-            </button>
+  return (
+    <div className={`flex flex-row ml-5 relative ${!dark?"light":""}`} ref={dropdownRef}>
+      
+      {/* Post Button */}
+      <button
+        className={`group px-5 p-1 w-25 flex justify-center items-center active:scale-95 font-bold text-md rounded-lg mx-1
+          ${theme
+            ? "bg-btncolorD/70  text-white hover:bg-logo/50 "
+            : "bg-gray-100  hover:bg-logo2/70 "
+          } hidden md:block lg:block`}
+        onClick={() => navigate("/ooo")}
+      >
+        <p className="flex items-center gap-2">
+          Post
+          <span className="text-2xl font-extrabold transition-transform -mt-1 duration-300 transform group-hover:rotate-45">
+            +
+          </span>
+        </p>
+      </button>
 
-            <button
-                    className={` active:scale-95 w-10 h-10 font-bold text-md rounded-full mx-5 ${elem.theme?"bg-btncolorD/70 hover:bg-btncolorD text-white hover:border-logo hover:border":"bg-gray-100 hover:bg-gray-200 hover:border-logo2 hover:border "} hidden md:block lg:block`}
-                    onClick={() => navigate("/")}
-                    >
-                    <img src={icon} className="h-full w-full rounded-full object-cover" />
-            </button>   
+      {/* User Avatar / Dropdown */}
+      <button
+        onClick={() => setOpen(!open)}
+        className={`active:scale-95 w-10 h-10 font-bold text-md rounded-full mx-5
+          ${theme ? "bg-btncolorD/70 hover:bg-btncolorD text-white hover:border-logo light:hover:border-logo2 hover:border" : "bg-gray-100 hover:bg-gray-200 hover:border-logo2 hover:border"}
+          hidden md:block lg:block`}
+      >
+        <img src={icon} className="h-full w-full rounded-full object-cover" />
+      </button>
+
+      {/* Dropdown Panel */}
+      {open && (
+       <div className="absolute right-0 mt-15 w-64 rounded-xl shadow-xl
+            bg-primaryD light:bg-white text-white light:text-txPrimary overflow-hidden z-50">
+
+        {/* Avatar Image */}
+        <div className="flex justify-center mt-5">
+            <img
+            src={icon} // Replace with user image if available
+            alt="Profile"
+            className="h-24 w-24 rounded-full border-2 border-transparent hover:border-logo light:hover:border-logo2 hover:border-4 transition-all duration-300 object-cover"
+            />
         </div>
-    )
+
+        {/* Account Info */}
+        <div className="px-6 py-5 text-center">
+            <p className="text-lg font-semibold">{user.username}</p>
+            <p className="text-sm opacity-70">{user.email}</p>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-txSecondaryD/50 light:border-gray-200 mx-4"></div>
+
+        {/* Logout Button */}
+        <button
+            className="w-full px-6 py-3 text-md font-semibold rounded-b-xl hover:bg-logo/20 light:hover:bg-logo2/20 transition mt-2"
+            onClick={() => {
+            setOpen(false); // close dropdown
+            onLogout();
+            }}
+        >
+            Logout
+        </button>
+        </div>
+
+      )}
+    </div>
+  );
 }
 
 export default AuthBtn;

@@ -1,10 +1,16 @@
 import { useRef, useState } from "react";
-import { MdPlayArrow, MdPause, MdVolumeOff, MdVolumeUp } from "react-icons/md";
+import {
+  MdPlayArrow,
+  MdPause,
+  MdVolumeOff,
+  MdVolumeUp
+} from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-function VideoCard(elem) {
+function VideoCard({ data, theme }) {
   const videoRef = useRef(null);
   const progressRef = useRef(null);
-
+  const navigate =useNavigate();
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -36,7 +42,6 @@ function VideoCard(elem) {
   const handleTimeUpdate = () => {
     const video = videoRef.current;
     if (!video) return;
-
     setProgress((video.currentTime / video.duration) * 100);
   };
 
@@ -53,20 +58,16 @@ function VideoCard(elem) {
     setProgress(percent * 100);
   };
 
-  const startSeek = (e) => {
-    setSeeking(true);
-    seek(e);
-  };
-
-  const moveSeek = (e) => {
-    if (seeking) seek(e);
-  };
-
-  const stopSeek = () => setSeeking(false);
-
   return (
     <div
-      className={`w-full max-w-[900px] rounded-xl border-txSecondary light:border-none text-white light:text-txPrimary bg-primaryD light:bg-primary  shadow-sm overflow-hidden m-4  ${!elem.theme ?"light":""}`}
+      className={`
+        w-full max-w-[900px] m-10
+        rounded-2xl overflow-hidden
+        bg-primaryD light:bg-primary
+        shadow-sm hover:shadow-lg transition
+        ${!theme ? "light" : ""}
+      `}
+      
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => {
         setHover(false);
@@ -74,22 +75,25 @@ function VideoCard(elem) {
       }}
     >
       {/* VIDEO */}
-      <div className="relative w-full h-[500px] bg-black">
+      <div className="relative w-full h-[450px] bg-black">
         <video
           ref={videoRef}
-          src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+          src={data.video}
+          poster={data.thumbnail}
           muted={muted}
           loop
           onTimeUpdate={handleTimeUpdate}
           className="w-full h-full object-cover"
         />
 
-        {/* Overlay Controls */}
+        {/* Overlay Play/Pause */}
         {hover && (
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition">
+          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
             <button
               onClick={togglePlay}
-              className="w-14 h-14 text-white/90 light:bg-logo2 bg-logo hover:border-2 active:scale-95 hover:border-white rounded-full flex items-center justify-center shadow-lg"
+              className="w-14 h-14 bg-logo text-white rounded-full
+              flex items-center justify-center shadow-lg
+              hover:border-2 hover:border-white active:scale-95"
             >
               {playing ? <MdPause size={32} /> : <MdPlayArrow size={32} />}
             </button>
@@ -99,25 +103,25 @@ function VideoCard(elem) {
         {/* Bottom Controls */}
         {hover && (
           <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2">
-            {/* Mute */}
             <button
               onClick={toggleMute}
-              className="text-white active:text-logo light:active:text-logo2 bg-black/50 p-1 rounded-full"
+              className="bg-black/50 p-1 rounded-full text-white"
             >
               {muted ? <MdVolumeOff size={22} /> : <MdVolumeUp size={22} />}
             </button>
 
-            {/* Progress */}
             <div
               ref={progressRef}
-              onMouseDown={startSeek}
-              onMouseMove={moveSeek}
-              onMouseUp={stopSeek}
-              onMouseLeave={stopSeek}
+              onMouseDown={(e) => {
+                setSeeking(true);
+                seek(e);
+              }}
+              onMouseMove={(e) => seeking && seek(e)}
+              onMouseUp={() => setSeeking(false)}
               className="flex-1 h-2 bg-white/30 rounded-full cursor-pointer"
             >
               <div
-                className="h-full light:bg-logo2/70 bg-logo/70 rounded-full"
+                className="h-full bg-logo rounded-full"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -127,29 +131,43 @@ function VideoCard(elem) {
 
       {/* CONTENT */}
       <div className="p-5 space-y-3">
-        {/* Title */}
-        <h3 className="text-[17px] font-bold ">
-            <span className="inline-block px-2 mr-5 py-1 text-xs rounded-full bg-purple-100 text-purple-700 hover:text-purple-200 hover:bg-purple-700">
+        {/* Title  */}
+        <h3 className="text-[17px] font-bold cursor-pointer" 
+        onClick={() => navigate(`/detail/${data.id}`)}>
+          <span
+            className={`
+              inline-flex items-center gap-1 px-2 py-1 mr-3
+              text-xs rounded-full font-semibold
+              bg-white text-red-600
+              hover:bg-red-600
+              hover:text-white transition
+            `}
+          >
             video
-            </span> 
-            ChromeCast! Now Available For Netflex
+          </span>
+          {data.title}
         </h3>
 
+        {/* decription */}
+        <div className="flex items-center justify-between text-xs opacity-80">
+          <span> {data.description}</span>
+        </div>
+
         {/* Meta */}
-        <div className="flex items-center justify-between text-xs ">
-          <span>👤 DevBytes • 1.2M views</span>
-          <span>⏱ 0:58</span>
+        <div className="flex items-center justify-between text-xs opacity-80">
+          <span>👤 {data.author} • {data.likes} likes</span>
+          <span>{data.duration || "—"}</span>
         </div>
 
         {/* Actions */}
         <div className="flex gap-4 pt-2">
-          <button className="px-3 py-1 text-sm rounded-lg light:bg-secondary bg-secondaryD/70 light:hover:bg-gray-200  hover:bg-secondaryD ">
-            ❤️ 12.4K
+          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD transition">
+            ❤️ {data.likes}
           </button>
-          <button className="px-3 py-1 text-sm rounded-lg light:bg-secondary bg-secondaryD/70 light:hover:bg-gray-200  hover:bg-secondaryD ">
-            💬 322
+          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD transition">
+            💬 {data.comments || 0}
           </button>
-          <button className="px-3 py-1 text-sm rounded-lg  light:bg-secondary bg-secondaryD/70 light:hover:bg-gray-200  hover:bg-secondaryD ">
+          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD transition">
             🔗 Share
           </button>
         </div>

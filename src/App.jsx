@@ -26,7 +26,7 @@ function App() {
         <Route path="/" element={<Home isAuth={isAuth} logout={logout} />} />
         <Route path="/auth" element={<SignUp login={login} />} />
         <Route path="*" element={<Error />}/>
-        <Route path="/detail" element={<Detail isAuth={isAuth} />}/>
+        <Route path="/detail/:id" element={<Detail isAuth={isAuth} logout={logout}  />}/>
 
       </Routes>
   );

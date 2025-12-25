@@ -1,14 +1,16 @@
 import { useState  } from "react";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { FiSun, FiMoon } from "react-icons/fi";
 import Search from './component/search'
 import Btn from './component/Btn'
 import ProgressBar from "./component/progessbarTop";
 import AuthIcon from './component/Authbtn'
 import { useTheme } from "./theme/useTheme";
+import Profile from './component/profileDropdown'
+import { useNavigate } from "react-router-dom";
 
 function Navbar({e}){
     const [logoutTrigger, setLogoutTrigger] = useState(false);
+    const navigate =useNavigate();
     const handleLogout = () => {
       setLogoutTrigger(true); 
     };
@@ -20,7 +22,7 @@ function Navbar({e}){
                 setLogoutTrigger(false); // reset trigger
                 }}  theme={dark} />
             <div className="w-full h-15 border-b light:border-gray-300 border-txSecondary p-1 flex flex-row justify-between items-center bg-primaryD light:bg-primary">
-                <div className="w-[30%] h-full items-center flex flex-row px-2">
+                <div className="w-auto h-full items-center flex flex-row px-2 cursor-grab" onClick={()=>navigate('/')}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 48 48">
                     <path 
                         fill={dark ? "#FF6900" : "#8639D3"} 
@@ -48,10 +50,10 @@ function Navbar({e}){
                         <FiMoon className="text-triaryD" size={22} />
                     )}
                     </button>
-                    {!e.isAuth?(<Btn theme={dark}/>):(<AuthIcon theme={dark}/>)}
-                    <button className={`p-1 px-2 rounded-4xl active:scale-95 ${dark?"bg-btncolorD/60 hover:bg-btncolorD text-white":"bg-btncolor/70 hover:bg-btncolor text-gray-950"} `}
-                    onClick={handleLogout}
-                    ><HiDotsHorizontal size={22} /></button>
+                    {!e.isAuth?(<Btn theme={dark}/>):(<AuthIcon theme={dark} user={{ username: "JohnDoe", email: "john@example.com" }} onLogout={handleLogout}/>)}<Profile
+                    user={{ username: "JohnDoe", email: "john@example.com" }}
+                    onLogout={handleLogout}
+                    />
                 </div>
             </div>
       </>
