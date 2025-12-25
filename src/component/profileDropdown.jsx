@@ -2,12 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { useTheme } from "../theme/useTheme";
 import icon from "../assets/upqk2y.png"; // replace with actual user image if available
+import { useNavigate } from "react-router-dom";
 
-function ProfileDropdown({ user, onLogout }) {
+function ProfileDropdown({ user, onLogout ,e}) {
+  const navigate = useNavigate();
   const { dark, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-
   // Click outside closes dropdown
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -36,7 +37,7 @@ function ProfileDropdown({ user, onLogout }) {
           bg-primaryD light:bg-white text-white light:text-txPrimary overflow-hidden z-50">
 
           {/* Avatar Image */}
-          <div className="flex justify-center mt-5">
+          {e.isAuth && (<div className="flex justify-center mt-5">
             <img
               src={icon} // Replace with user image if available
               alt="Profile"
@@ -48,30 +49,42 @@ function ProfileDropdown({ user, onLogout }) {
                 <p className="text-lg font-semibold">{user.username}</p>
                 <p className="text-sm opacity-70">{user.email}</p>
             </div>
-          </div>
+          </div>)}
 
           {/* Buttons */}
           <div className="flex flex-col gap-2 px-2 pb-4">
             <button
-              className="w-full py-2 text-md font-semibold rounded-lg hover:bg-secondaryD/70 light:hover:bg-gray-100 transition"
+              className="w-full mt-2 py-2 text-md font-semibold rounded-lg hover:bg-secondaryD/70 light:hover:bg-gray-100 transition"
               onClick={() => toggleTheme()}
             >
               {dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             </button>
             <button
               className="w-full py-2 text-md font-semibold rounded-lg hover:bg-secondaryD/70 light:hover:bg-gray-100 transition"
+              onClick={()=>{navigate('/settings')}}
             >
               Settings
             </button>
-            <button
-              className="w-full py-2 text-md font-semibold rounded-lg hover:bg-logo/30 light:hover:bg-logo2/30 transition"
-              onClick={() => {
-                setOpen(false);
-                onLogout();
-              }}
-            >
-              Logout
-            </button>
+            {e.isAuth?
+                <button
+                  className="w-full py-2 cursor-pointer text-md font-semibold rounded-lg hover:bg-logo/30 light:hover:bg-logo2/30 transition"
+                  onClick={() => {
+                    setOpen(false);
+                    onLogout();
+                  }}
+                >
+                  Logout
+                </button>:
+                <button
+                  className="w-full py-2 cursor-pointer text-md font-semibold rounded-lg hover:bg-logo/30 light:hover:bg-logo2/30 transition"
+                  onClick={() => {
+                    setOpen(false);
+                    navigate("/auth");
+                  }}
+                >
+                  Log-In
+                </button>
+              }
           </div>
         </div>
       )}

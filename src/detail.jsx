@@ -25,7 +25,7 @@ function Detail(e) {
       </button>
 
       <div className="w-full flex justify-center">
-        <div className={`rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition m-4 max-w-[1200px] w-full bg-primaryD light:bg-primary`}>
+        <div className={`rounded-t-2xl overflow-hidden shadow-sm hover:shadow-lg transition m-4 max-w-[1200px] w-full bg-primaryD light:bg-primary`}>
           {/* Post Image */}
           {post.type === "blog" && post.image && (
             <div className="w-full h-[420px] overflow-hidden">
@@ -40,7 +40,7 @@ function Detail(e) {
           {/* Video */}
           {post.type === "video" && post.video && (
             <div className="w-full h-[700px] overflow-hidden">
-              <video controls className="w-full h-full object-cover rounded-lg">
+              <video controls className="w-full h-full object-cover rounded-t-lg">
                 <source src={post.video} type="video/mp4" />
               </video>
             </div>
@@ -48,9 +48,11 @@ function Detail(e) {
 
           {/* Content */}
           <div className="p-6 space-y-6">
+            {post.type === "blog"  && (
             <span className="inline-block px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700 hover:bg-blue-600 hover:text-white transition">
               {post.category.toLowerCase()}
             </span>
+          )}
 
             <h1 className="text-3xl font-bold light:text-txPrimary text-white leading-tight">
               {post.title}

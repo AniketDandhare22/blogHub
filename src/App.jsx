@@ -4,6 +4,7 @@ import Error from "./error.jsx";
 import { useState } from "react";
 import {  Routes, Route } from "react-router-dom";
 import Detail from './detail.jsx';
+import Settings from './Settings.jsx';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/auth" element={<SignUp login={login} />} />
         <Route path="*" element={<Error />}/>
         <Route path="/detail/:id" element={<Detail isAuth={isAuth} logout={logout}  />}/>
+        <Route path="/settings" element={<Settings isAuth={isAuth} logout={logout}/>} />
 
       </Routes>
   );

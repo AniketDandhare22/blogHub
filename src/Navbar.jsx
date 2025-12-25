@@ -12,17 +12,24 @@ function Navbar({e}){
     const [logoutTrigger, setLogoutTrigger] = useState(false);
     const navigate =useNavigate();
     const handleLogout = () => {
+        e.logout(); 
       setLogoutTrigger(true); 
     };
     const { dark, toggleTheme } = useTheme();
     return(
         <>
             <ProgressBar trigger={logoutTrigger} onComplete={() => {
-                e.logout(); 
+                
                 setLogoutTrigger(false); // reset trigger
                 }}  theme={dark} />
-            <div className="w-full h-15 border-b light:border-gray-300 border-txSecondary p-1 flex flex-row justify-between items-center bg-primaryD light:bg-primary">
-                <div className="w-auto h-full items-center flex flex-row px-2 cursor-grab" onClick={()=>navigate('/')}>
+            <div className={`w-full h-15 border-b light:border-gray-300 border-txSecondary p-1 flex flex-row justify-between items-center bg-primaryD light:bg-primary ${dark?"":"light"}`}>
+                <div className="w-auto h-full items-center flex flex-row px-2 cursor-grab" 
+                onClick={()=>{
+                    setLogoutTrigger(true); 
+                    navigate('/');}}
+                onComplete={() => {
+                    setLogoutTrigger(false); 
+                }} >
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 48 48">
                     <path 
                         fill={dark ? "#FF6900" : "#8639D3"} 
@@ -50,9 +57,11 @@ function Navbar({e}){
                         <FiMoon className="text-triaryD" size={22} />
                     )}
                     </button>
-                    {!e.isAuth?(<Btn theme={dark}/>):(<AuthIcon theme={dark} user={{ username: "JohnDoe", email: "john@example.com" }} onLogout={handleLogout}/>)}<Profile
+                    {!e.isAuth?(<Btn theme={dark}/>):(<AuthIcon theme={dark} user={{ username: "JohnDoe", email: "john@example.com" }} onLogout={handleLogout}/>)}
+                    <Profile
                     user={{ username: "JohnDoe", email: "john@example.com" }}
                     onLogout={handleLogout}
+                    e={e}
                     />
                 </div>
             </div>

@@ -130,10 +130,10 @@ function VideoCard({ data, theme }) {
       </div>
 
       {/* CONTENT */}
-      <div className="p-5 space-y-3">
+      <div className="p-5 space-y-3 cursor-pointer">
+        <div className=" space-y-3 cursor-pointer" onClick={() => navigate(`/detail/${data.id}`)}>
         {/* Title  */}
-        <h3 className="text-[17px] font-bold cursor-pointer" 
-        onClick={() => navigate(`/detail/${data.id}`)}>
+        <h3 className="text-[17px] font-bold" >
           <span
             className={`
               inline-flex items-center gap-1 px-2 py-1 mr-3
@@ -158,7 +158,7 @@ function VideoCard({ data, theme }) {
           <span>👤 {data.author} • {data.likes} likes</span>
           <span>{data.duration || "—"}</span>
         </div>
-
+      </div>
         {/* Actions */}
         <div className="flex gap-4 pt-2">
           <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD transition">

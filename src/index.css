@@ -5,6 +5,13 @@
     display: none;
 }
 
+.setting-row {
+  @apply w-full flex items-center justify-between
+  px-4 py-3 rounded-xl
+  hover:bg-btncolor/20 transition;
+}
+
+
 .glass-effect {
   border-radius: 20px;
   background-image: linear-gradient(
