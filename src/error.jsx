@@ -7,7 +7,7 @@ function Error() {
   return (
     <div className='w-full h-screen bg-cover bg-center flex-col flex justify-center items-center' style={{backgroundImage: `url(${Err})`}}>
       <div className='flex flex-col justify-center'>
-          <div className='flex flex-row justify-center animate-flicker '>
+          <div className='flex flex-row justify-center  animate-flicker'>
             <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 48 48">
               <path 
                 fill={"#000"} 
@@ -20,7 +20,7 @@ function Error() {
             </svg>
             <div className=" font-bold text-4xl pt-1 h-full items-center flex text-white text-shadow-lg"> Blog<span className={`text-white m-1 bg-black px-2 rounded-lg`}>Hub</span></div>
           </div>
-          <p className='text-black text-shadow-2xs text-9xl font-extrabold flex justify-center animate-bounce '>404 Error</p>
+          <p className='text-black text-shadow-2xs text-9xl font-extrabold flex justify-center'>404 Error</p>
           <p className='text-black/70 text-shadow-2xs text-5xl font-bold flex justify-center mb-7 '>“Wrong angle. This page doesn’t exist.”</p>
           <p className='hover:text-white/60  text-white/50 text-shadow-lg text-4xl flex justify-center p-5 font-bold animate-flicker'>Fall back to a safe zone.</p>
           <div className='flex justify-center flex-col'>

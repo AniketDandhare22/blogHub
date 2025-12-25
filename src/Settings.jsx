@@ -111,7 +111,7 @@ const Section = ({ title, children }) => (
   >
     <h3 className="text-lg font-semibold mb-4">{title}</h3>
     <div className="flex flex-col divide-y
-      divide-txSecondaryD/40 light:divide-gray-200">
+      divide-txSecondaryD/40 gap-y-2 light:divide-gray-200">
       {children}
     </div>
   </div>
