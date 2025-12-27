@@ -25,7 +25,7 @@ function Settings(e) {
   console.log(e)
   return (
     <div
-      className={`${dark ? "" : "light"} h-screen
+      className={`${dark ? "" : "light"} min-h-screen
       text-white light:text-primaryD
       bg-secondaryD light:bg-secondary
       `}

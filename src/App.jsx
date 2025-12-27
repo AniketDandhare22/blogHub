@@ -5,6 +5,7 @@ import { useState } from "react";
 import {  Routes, Route } from "react-router-dom";
 import Detail from './detail.jsx';
 import Settings from './Settings.jsx';
+import Create from './CreatePost.jsx';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="*" element={<Error />}/>
         <Route path="/detail/:id" element={<Detail isAuth={isAuth} logout={logout}  />}/>
         <Route path="/settings" element={<Settings isAuth={isAuth} logout={logout}/>} />
+        <Route path="/createPost" element={<Create isAuth={isAuth} logout={logout}/>} />
 
       </Routes>
   );

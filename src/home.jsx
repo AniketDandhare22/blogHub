@@ -10,10 +10,27 @@ import posts from "./data/post.json";
 function Home(e) {
     const [collapsed, setCollapsed] = useState(false);
     const { dark} = useTheme();
+    const [query ,setQuery] =useState('');
+    const [query2 ,setQuery2] =useState('');
+    const filterPost = posts.filter((post) => {
+      const text = query.toLowerCase();
+      if(query2==="All Posts"){setQuery2('');}
+      return (
+        post.title?.toLowerCase().includes(text) ||
+        post.description?.toLowerCase().includes(text) ||
+        post.category?.toLowerCase().includes(text)
+      );
+    });
+    const filterPost2 = filterPost.filter((post) => {
+      const text2 = query2.toLowerCase();
+      if(query2==="All Posts"){setQuery2('');}
+      return(post.category?.toLowerCase().includes(text2));
+      
+    });
   return (
     <div className={`h-screen w-full flex flex-col bg-primaryD light:bg-primary text-white light:text-txPrimary ${!dark?"light":""}`}>
       {/* Navbar */}
-      <Navbar e={e}/>
+      <Navbar e={e} setQuery={setQuery}/>
 
       {/* Content */}
         <div className=" w-full  flex flex-row overflow-hidden"> 
@@ -45,15 +62,15 @@ function Home(e) {
                 </button>
 
                 <div className={`${collapsed ? "opacity-0 pointer-events-none" : "opacity-100"} transition-opacity`}>
-                  <SideBar theme={dark} />
+                  <SideBar theme={dark} task={setQuery2} />
                 </div>
               </div>
   
 
             {/* blog content */}
-            <div className={`w-full flex flex-wrap justify-center h-full custom-scroll ${dark?"bg-secondaryD":"bg-secondary"} overflow-y-auto overflow-x-hidden`}>
-              <div className="w-full max-w-[850px] m-10 flex items-center justify-between">
-                <div>
+            <div className={`w-full flex flex-wrap justify-center h-screen custom-scroll ${dark?"bg-secondaryD":"bg-secondary"} overflow-y-auto overflow-x-hidden`}>
+              <div className="w-full max-w-[850px] m-10 flex justify-between">
+                <div className="h-20">
                   <h1 className={`text-4xl mb-2 light:text-primaryD text-primary light:hover:text-logo2 hover:text-logo`}>
                     Latest Blog Posts
                   </h1>
@@ -61,17 +78,26 @@ function Home(e) {
                     Discover stories, thinking, and expertise from writers on any topic.
                   </p>
                 </div>
-                <div className={`px-4 py-2 rounded-lg light:text-txSecondary text-txSecondaryD bg-primaryD light:bg-white font-bold`}>
-                  {posts.length} posts
+                <div className={`px-4 py-2 rounded-lg h-10 light:text-txSecondary text-txSecondaryD bg-primaryD light:bg-white font-bold border-2 border-transparent hover:border-logo light:hover:border-logo2`}>
+                  {filterPost2.length} posts
                 </div>
               </div>
-              {posts.map((post) =>
+              <div className="w-full h-full justify-center flex flex-wrap">
+
+              {filterPost2.length === 0 && (
+                <p className="text-center wrap-break-word max-w-200 h-fit text-sm opacity-70  rounded-lg bg-primaryD light:bg-primary p-2 px-4 ">
+                  No posts found for "{query}"
+                </p>
+              )}
+
+              {filterPost2.map((post) =>
                 post.type === "video" ? (
                   <Vcard key={post.id} data={post} theme={dark} />
                 ) : (
                   <Card key={post.id} data={post} theme={dark}  />
                 )
               )}
+              </div>
 
             </div>
 

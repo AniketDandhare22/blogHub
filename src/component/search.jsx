@@ -21,6 +21,7 @@ function SearchBar(elem) {
           focus:shadow-md
           transition-all duration-200
         `}
+        onChange={(e) => elem.toQuery(e.target.value)}
       />
 
       {/* Subtle Enter Hint */}

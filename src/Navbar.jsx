@@ -8,7 +8,7 @@ import { useTheme } from "./theme/useTheme";
 import Profile from './component/profileDropdown'
 import { useNavigate } from "react-router-dom";
 
-function Navbar({e}){
+function Navbar({e , setQuery}){
     const [logoutTrigger, setLogoutTrigger] = useState(false);
     const navigate =useNavigate();
     const handleLogout = () => {
@@ -44,7 +44,7 @@ function Navbar({e}){
                     <div className="  font-bold text-2xl pt-1 h-full items-center flex text-white light:text-black"> Blog<span className={`text-white ${dark?"bg-logo":"bg-logo2"} px-2 rounded-lg`}>Hub</span></div>
                 </div>
                 <div className="w-full flex h-full justify-center ">
-                <Search theme={dark}/>
+                <Search theme={dark} toQuery={setQuery} />
                 </div>
                 <div className="items-center flex px-3 w-[30%] justify-end">
                     <button

@@ -30,7 +30,7 @@ function AuthBtn({ theme, user ,onLogout }) {
             ? "bg-btncolorD/70  text-white hover:bg-logo/50 "
             : "bg-gray-100  hover:bg-logo2/70 "
           } hidden md:block lg:block`}
-        onClick={() => navigate("/ooo")}
+        onClick={() => navigate("/createPost")}
       >
         <p className="flex items-center gap-2">
           Post

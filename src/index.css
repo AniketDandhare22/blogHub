@@ -139,3 +139,39 @@
 
 
 
+/* Define conic gradient backgrounds */
+.bg-gradient-conic {
+  background: conic-gradient(from 0deg, #a855f7, #ec4899, #facc15, #a855f7);
+}
+
+.bg-gradient-conic2 {
+  background: conic-gradient(from 0deg, #22c55e, #3b82f6, #8b5cf6, #22c55e);
+}
+
+/* Animate the 'from' angle from 0deg to 360deg */
+@keyframes border-gradient-spin {
+  0% {
+    background: conic-gradient(from 0deg, #a855f7, #ec4899, #facc15, #a855f7);
+  }
+  100% {
+    background: conic-gradient(from 360deg, #a855f7, #ec4899, #facc15, #a855f7);
+  }
+}
+
+@keyframes border-gradient-spin2 {
+  0% {
+    background: conic-gradient(from 0deg, #22c55e, #3b82f6, #8b5cf6, #22c55e);
+  }
+  100% {
+    background: conic-gradient(from 360deg, #22c55e, #3b82f6, #8b5cf6, #22c55e);
+  }
+}
+
+.animate-border-gradient {
+  animation: border-gradient-spin 3s linear infinite;
+}
+
+.animate-border-gradient2 {
+  animation: border-gradient-spin2 3s linear infinite;
+}
+

@@ -8,7 +8,7 @@ function BlogCard({ data, theme }) {
   return (
     <div
       className={`
-        w-full max-w-[900px] m-10
+        w-full max-w-[900px] m-10 h-fit
         rounded-2xl overflow-hidden
         shadow-sm hover:shadow-lg hover:-translate-y-1
         transition cursor-pointer

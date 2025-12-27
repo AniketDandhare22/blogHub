@@ -45,7 +45,6 @@ function App(auth) {
       });
     }, 1500);
   };
-  console.log(auth)
   const isDisabled = loading || !form.email || !form.password || (!status && !form.username); // username only required when Sign Up
   useEffect(() => {
     if (success) {
@@ -58,7 +57,7 @@ function App(auth) {
   }, [success,navigate]);
 
   return (
-    <div className={`w-full h-screen p-2 bg-cover flex justify-center ${!dark?"text-black":"text-white"} `} style={{backgroundImage: `url(${!dark ? backg3 : backg4})`}}>
+    <div className={`w-full h-screen p-2 bg-cover flex justify-center ${!dark?"text-black light":"text-white"} `} style={{backgroundImage: `url(${!dark ? backg3 : backg4})`}}>
       <div className={`glass-effect h-[97%] w-full m-3 flex overflow-hidden ${status? "flex-row-reverse" : "flex-row"} ${!dark?"": "border border-white/70 shadow-[0_0_45px_15px_rgba(168,85,247,0.45)]"} backdrop-blur-xl transition-all duration-700 max-w-[1600px] justify-center`}>
 
         {/* Left */}
@@ -159,8 +158,8 @@ function App(auth) {
                 </button>
 
                 {success && (
-                  <p className={`${!dark?"text-logo2":"text-logo"} text-sm font-medium`}>
-                    ✔ {status ? "Logged in successfully" : "Signed up successfully"}
+                  <p className={`${status?"text-logo2":"text-logo"} text-sm font-medium`}>
+                     {status ? "✔ Logged in successfully" : "✔ Signed up successfully"}
                   </p>
                 )}
 
