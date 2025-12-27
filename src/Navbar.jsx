@@ -13,20 +13,20 @@ function Navbar({e , setQuery}){
     const navigate =useNavigate();
     const handleLogout = () => {
         e.logout(); 
-      setLogoutTrigger(true); 
+        setLogoutTrigger(true); 
     };
     const { dark, toggleTheme } = useTheme();
     return(
         <>
             <ProgressBar trigger={logoutTrigger} onComplete={() => {
-                
-                setLogoutTrigger(false); // reset trigger
+                    setLogoutTrigger(false); // reset trigger
                 }}  theme={dark} />
             <div className={`w-full h-15 border-b light:border-gray-300 border-txSecondary p-1 flex flex-row justify-between items-center bg-primaryD light:bg-primary ${dark?"":"light"}`}>
                 <div className="w-auto h-full items-center flex flex-row px-2 cursor-grab" 
                 onClick={()=>{
+                    navigate('/');
                     setLogoutTrigger(true); 
-                    navigate('/');}}
+                }}
                 onComplete={() => {
                     setLogoutTrigger(false); 
                 }} >
@@ -43,7 +43,7 @@ function Navbar({e , setQuery}){
 
                     <div className="  font-bold text-2xl pt-1 h-full items-center flex text-white light:text-black"> Blog<span className={`text-white ${dark?"bg-logo":"bg-logo2"} px-2 rounded-lg`}>Hub</span></div>
                 </div>
-                <div className="w-full flex h-full justify-center ">
+                <div className="w-full h-full justify-center hidden md:flex lg:flex">
                 <Search theme={dark} toQuery={setQuery} />
                 </div>
                 <div className="items-center flex px-3 w-[30%] justify-end">

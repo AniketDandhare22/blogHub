@@ -61,7 +61,7 @@ function Home(e) {
 
                 </button>
 
-                <div className={`${collapsed ? "opacity-0 pointer-events-none" : "opacity-100"} transition-opacity`}>
+                <div className={`${collapsed ? "opacity-0 pointer-events-none " : "opacity-100"} transition-opacity`}>
                   <SideBar theme={dark} task={setQuery2} />
                 </div>
               </div>

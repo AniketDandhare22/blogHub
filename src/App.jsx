@@ -6,7 +6,7 @@ import {  Routes, Route } from "react-router-dom";
 import Detail from './detail.jsx';
 import Settings from './Settings.jsx';
 import Create from './CreatePost.jsx';
-
+import Price from './Pricing.jsx';
 function App() {
 
   const [isAuth, setIsAuth] = useState(
@@ -31,7 +31,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail isAuth={isAuth} logout={logout}  />}/>
         <Route path="/settings" element={<Settings isAuth={isAuth} logout={logout}/>} />
         <Route path="/createPost" element={<Create isAuth={isAuth} logout={logout}/>} />
-
+        <Route path="/price" element={<Price isAuth={isAuth} logout={logout}/>} />
       </Routes>
   );
 }
