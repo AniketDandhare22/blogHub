@@ -14,7 +14,7 @@ function Pricing(e) {
         return () => clearInterval(interval);
     }, []);
   return (
-    <div className={`${dark?"":"light"} h-screen bg-primaryD light:bg-secondary text-white light:text-primaryD light:text-primaryD `}>
+    <div className={`${dark?"":"light"} lg:h-screen md:h-screen h-fit bg-primaryD light:bg-secondary text-white light:text-primaryD light:text-primaryD `}>
         <Navbar e={e}/>
       <div className="max-w-[1100px] h-[85%] px-10 pt-5 mt-10 rounded-2xl mx-auto text-center light:bg-primary bg-secondaryD">
 

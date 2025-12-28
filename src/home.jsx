@@ -78,7 +78,7 @@ function Home(e) {
                     Discover stories, thinking, and expertise from writers on any topic.
                   </p>
                 </div>
-                <div className={`px-4 py-2 rounded-lg h-10 light:text-txSecondary text-txSecondaryD bg-primaryD light:bg-white font-bold border-2 border-transparent hover:border-logo light:hover:border-logo2`}>
+                <div className={`px-4 py-2 rounded-lg h-10lg:h-10 md: h-15 justify-center items-center flex light:text-txSecondary text-txSecondaryD bg-primaryD light:bg-white font-bold border-2 border-transparent hover:border-logo light:hover:border-logo2`}>
                   {filterPost2.length} posts
                 </div>
               </div>

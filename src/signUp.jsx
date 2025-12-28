@@ -61,14 +61,14 @@ function App(auth) {
       <div className={`glass-effect h-[97%] w-full m-3 flex overflow-hidden ${status? "flex-row-reverse" : "flex-row"} ${!dark?"": "border border-white/70 shadow-[0_0_45px_15px_rgba(168,85,247,0.45)]"} backdrop-blur-xl transition-all duration-700 max-w-[1600px] justify-center`}>
 
         {/* Left */}
-        <div className={`w-1/2 h-full bg-cover bg-no-repeat transition-[background-position,transform] duration-600 ease-in-out hidden md:block`} style={{
+        <div className={`w-1/2 h-full bg-cover bg-no-repeat transition-[background-position,transform] duration-600 ease-in-out hidden md:block lg:block`} style={{
               backgroundImage: `url(${status ? backg1 : backg2})`,
               backgroundPosition: !dark ? "right center" : "left center",
               transform: status ? "scale(1.05)" : "scale(1)"
         }}/>
 
         {/* Right Form Section */}
-        <div className="w-1/2 flex flex-col px-10 py-8 relative">
+        <div className="lg:w-1/2 md:w-1/2 w-full flex flex-col px-10 py-8 relative">
           <div className="flex items-center justify-between p-4 gap-2 w-full">
             
             <div className="w-[50%] h-full items-center flex flex-row px-2 cursor-pointer animate-bounce" onClick={()=>{navigate('/')}}>
@@ -100,7 +100,7 @@ function App(auth) {
           </div>
           </div>
 
-          <div className="mt-3 w-full p-30 mx-3 sm:mx-1">
+          <div className="mt-3 w-full p-8 lg:p-30 md:p-20 mx-3 sm:mx-1">
               {/* Welcome Text */}
               <div className="mt-10 mb-6">
                 <h2 className="text-3xl font-bold">
