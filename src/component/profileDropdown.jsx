@@ -65,6 +65,18 @@ function ProfileDropdown({ user, onLogout ,e}) {
             >
               Settings
             </button>
+            <button
+              className="w-full py-2 text-md font-semibold rounded-lg hover:bg-secondaryD/70 light:hover:bg-gray-100 transition"
+              onClick={()=>{navigate('/price')}}
+            >
+              Ai Feature
+            </button>
+            {e.isAuth?(<button
+              className="w-full py-2 text-md font-semibold rounded-lg hover:bg-secondaryD/70 light:hover:bg-gray-100 transition"
+              onClick={()=>{navigate('/createPost')}}
+            >
+              Post
+            </button>):""}
             {e.isAuth?
                 <button
                   className="w-full py-2 cursor-pointer text-md font-semibold rounded-lg hover:bg-logo/30 light:hover:bg-logo2/30 transition"

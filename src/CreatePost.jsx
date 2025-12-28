@@ -55,18 +55,53 @@ function Create(e) {
                   ></div>
 
                   {/* Button */}
-                <button className="group active:scale-97 relative h-full z-10 w-full rounded-xl 
-                                  bg-triaryD text-white light:hover:text-primaryD hover:bg-primaryD 
-                                  light:bg-gray-200 light:text-primaryD light:hover:bg-gray-100 
-                                  transition font-semibold items-center flex justify-center overflow-hidden"
-                                  onClick={()=>navigate('/price')}>
-                  <span className="group-hover:bg-linear-to-r from-blue-500 via-red-500 to-green-500
-                                  bg-size-[300%_100%] bg-clip-text text-transparent
-                                  bg-white light:bg-primaryD font-bold
-                                  transition-all duration-200 hover:animate-gradient-move">
-                    Text Helper AI
-                  </span>
-                </button>
+                <button
+                    className="group active:scale-97 relative h-full z-10 w-full rounded-xl
+                              bg-triaryD text-white light:hover:text-primaryD hover:bg-primaryD
+                              light:bg-gray-200 light:text-primaryD light:hover:bg-gray-100
+                              transition font-semibold flex items-center justify-center overflow-hidden gap-2"
+                    onClick={() => navigate('/price')}
+                  >
+                    {/* Icon */}
+                    <span className="flex items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 30 30"
+                      >
+                        <defs>
+                          <linearGradient id="starGradient" gradientTransform="rotate(60)">
+                            <stop offset="40%" stopColor="#3B82F6" />   
+                            <stop offset="100%" stopColor="#EC4899" /> 
+                          </linearGradient>
+                        </defs>
+
+                        <path
+                          fill="url(#starGradient)"
+                          d="M14.217,19.707l-1.112,2.547c-0.427,0.979-1.782,0.979-2.21,0l-1.112-2.547c-0.99-2.267-2.771-4.071-4.993-5.057
+                            L1.73,13.292c-0.973-0.432-0.973-1.848,0-2.28l2.965-1.316
+                            C6.974,8.684,8.787,6.813,9.76,4.47l1.126-2.714
+                            c0.418-1.007,1.81-1.007,2.228,0L14.24,4.47
+                            c0.973,2.344,2.786,4.215,5.065,5.226l2.965,1.316
+                            c0.973,0.432,0.973,1.848,0,2.28l-3.061,1.359
+                            C16.988,15.637,15.206,17.441,14.217,19.707z"
+                        />
+                      </svg>
+
+                    </span>
+
+                    {/* Text */}
+                    <span
+                      className="group-hover:bg-linear-to-r from-blue-500 via-red-500 to-green-500
+                                bg-size-[300%_100%] bg-clip-text text-transparent
+                                bg-white light:bg-primaryD font-bold
+                                transition-all duration-200 hover:animate-gradient-move"
+                    >
+                      Text Helper AI
+                    </span>
+                  </button>
+
             </div> 
             <div className="relative w-100 group">
                   {/* Gradient Glow */}
@@ -78,19 +113,52 @@ function Create(e) {
                   ></div>
 
                   {/* Button */}
-                <button className="group active:scale-97 relative h-full z-10 w-full rounded-xl 
-                                  bg-triaryD text-white light:hover:text-primaryD hover:bg-primaryD  
-                                  light:bg-gray-200 light:text-primaryD light:hover:bg-gray-100 
-                                  transition font-semibold items-center flex justify-center overflow-hidden"
-                        onClick={()=>navigate('/price')}
-                                  >
-                  <span className="group-hover:bg-linear-to-r from-blue-500 via-red-500 to-green-500
-                                  bg-size-[300%_100%] bg-clip-text text-transparent
-                                  bg-white light:bg-primaryD font-bold
-                                  transition-all duration-200 hover:animate-gradient-move">
-                    AI Image generate
-                  </span>
-                </button>
+                <button
+                    className="group active:scale-97 relative h-full z-10 w-full rounded-xl
+                              bg-triaryD text-white light:hover:text-primaryD hover:bg-primaryD
+                              light:bg-gray-200 light:text-primaryD light:hover:bg-gray-100
+                              transition font-semibold flex items-center justify-center overflow-hidden gap-2"
+                    onClick={() => navigate('/price')}
+                  >
+                    {/* Icon */}
+                    <span className="flex items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 30 30"
+                      >
+                        <defs>
+                          <linearGradient id="starGradient" gradientTransform="rotate(60)">
+                            <stop offset="40%" stopColor="#3B82F6" />   
+                            <stop offset="100%" stopColor="#EC4899" /> 
+                          </linearGradient>
+                        </defs>
+
+                        <path
+                          fill="url(#starGradient)"
+                          d="M14.217,19.707l-1.112,2.547c-0.427,0.979-1.782,0.979-2.21,0l-1.112-2.547c-0.99-2.267-2.771-4.071-4.993-5.057
+                            L1.73,13.292c-0.973-0.432-0.973-1.848,0-2.28l2.965-1.316
+                            C6.974,8.684,8.787,6.813,9.76,4.47l1.126-2.714
+                            c0.418-1.007,1.81-1.007,2.228,0L14.24,4.47
+                            c0.973,2.344,2.786,4.215,5.065,5.226l2.965,1.316
+                            c0.973,0.432,0.973,1.848,0,2.28l-3.061,1.359
+                            C16.988,15.637,15.206,17.441,14.217,19.707z"
+                        />
+                      </svg>
+
+                    </span>
+
+                    {/* Text */}
+                    <span
+                      className="group-hover:bg-linear-to-r from-blue-500 via-red-500 to-green-500
+                                bg-size-[300%_100%] bg-clip-text text-transparent
+                                bg-white light:bg-primaryD font-bold
+                                transition-all duration-200 hover:animate-gradient-move"
+                    >
+                      Image Generator
+                    </span>
+                  </button>
             </div> 
           </div>         
           <div className="max-w-6xl w-full h-fit mx-auto flex flex-col px-6 py-8 bg-primaryD light:bg-black/7  rounded-xl ">

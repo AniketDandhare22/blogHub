@@ -1,4 +1,4 @@
-import { useState  } from "react";
+import { useState ,useEffect  } from "react";
 import { FiSun, FiMoon } from "react-icons/fi";
 import Search from './component/search'
 import Btn from './component/Btn'
@@ -16,6 +16,16 @@ function Navbar({e , setQuery}){
         setLogoutTrigger(true); 
     };
     const { dark, toggleTheme } = useTheme();
+    
+      const [angle, setAngle] = useState(0);
+    
+        useEffect(() => {
+            // Update the angle continuously
+            const interval = setInterval(() => {
+            setAngle(prev => (prev + 4) % 360); // increase 2 degrees per tick
+            }, 30); 
+            return () => clearInterval(interval);
+        }, []);
     return(
         <>
             <ProgressBar trigger={logoutTrigger} onComplete={() => {
@@ -46,7 +56,70 @@ function Navbar({e , setQuery}){
                 <div className="w-full h-full justify-center hidden md:flex lg:flex">
                 <Search theme={dark} toQuery={setQuery} />
                 </div>
-                <div className="items-center flex px-3 w-[30%] justify-end">
+                <div className="items-center flex px-3 w-[40%] justify-end gap-2">
+                    <div className="relative hidden lg:block w-20 h-10 group">
+  
+                    {/* 🌈 Conic Gradient Glow */}
+                    <div
+                        className="absolute inset-0 rounded-full blur-[3px] scale-106 opacity-0
+                                group-hover:opacity-100 transition duration-300"
+                        style={{
+                        background: `conic-gradient(
+                            from ${angle}deg,
+                            #EC4899,
+                            pink,
+                            skyblue,
+                            #3B82F6,
+                            transparent,
+                            transparent
+                        )`,
+                        }}
+                    />
+
+                    {/* 🔘 Button */}
+                    <button
+                        className={`relative z-10 p-2 w-full h-full rounded-full
+                                    flex items-center justify-center gap-1
+                                    transition active:scale-95 cursor-pointer
+                                    ${
+                                    dark
+                                        ? "bg-btncolorD"
+                                        : "bg-btncolor"
+                                    }`}
+                        onClick={()=>{navigate('/price')}}
+                    >
+                        {/* ⭐ Icon */}
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 30 30"
+                        >
+                        <defs>
+                            <linearGradient id="starGradientSmall" gradientTransform="rotate(60)">
+                            <stop offset="40%" stopColor="#3B82F6" />
+                            <stop offset="100%" stopColor="#EC4899" />
+                            </linearGradient>
+                        </defs>
+
+                        <path
+                            fill="url(#starGradientSmall)"
+                            d="M14.217,19.707l-1.112,2.547c-0.427,0.979-1.782,0.979-2.21,0l-1.112-2.547
+                            c-0.99-2.267-2.771-4.071-4.993-5.057L1.73,13.292
+                            c-0.973-0.432-0.973-1.848,0-2.28l2.965-1.316
+                            C6.974,8.684,8.787,6.813,9.76,4.47l1.126-2.714
+                            c0.418-1.007,1.81-1.007,2.228,0L14.24,4.47
+                            c0.973,2.344,2.786,4.215,5.065,5.226l2.965,1.316
+                            c0.973,0.432,0.973,1.848,0,2.28l-3.061,1.359
+                            C16.988,15.637,15.206,17.441,14.217,19.707z"
+                        />
+                        </svg>
+
+                        {/* 🏷️ Text */}
+                        <p className="font-bold  text-white light:text-primaryD">Cr: 0</p>
+                    </button>
+                    </div>
+
                     <button
                     onClick={() => toggleTheme()}
                     className={`p-2 rounded-full transition active:scale-95 ${dark?"bg-btncolorD/60 hover:bg-btncolorD":"bg-btncolor/70 hover:bg-btncolor"}`}

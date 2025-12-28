@@ -2,7 +2,7 @@ import { FiSearch } from "react-icons/fi";
 
 function SearchBar(elem) {
   return (
-    <div className={`relative lg:w-[50%] md:w-[50%] w-20 min-w-[260px] flex items-center border-none ${elem.theme?'light':""} `}>
+    <div className={`relative lg:w-[60%] md:w-[50%] w-20 min-w-[260px] flex items-center border-none ${elem.theme?'light':""} `}>
       {/* Search Icon */}
       <FiSearch
         size={18}
