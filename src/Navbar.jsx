@@ -8,7 +8,7 @@ import { useTheme } from "./theme/useTheme";
 import Profile from './component/profileDropdown'
 import { useNavigate } from "react-router-dom";
 
-function Navbar({e , setQuery}){
+function Navbar({e , setQuery ,credits, token}){
     const [logoutTrigger, setLogoutTrigger] = useState(false);
     const navigate =useNavigate();
     const handleLogout = () => {
@@ -57,7 +57,7 @@ function Navbar({e , setQuery}){
                 <Search theme={dark} toQuery={setQuery} />
                 </div>
                 <div className="items-center flex px-3 w-[40%] justify-end gap-2">
-                    <div className="relative hidden lg:block w-20 h-10 group">
+                    <div className="relative hidden lg:block w-25 h-10 group">
   
                     {/* 🌈 Conic Gradient Glow */}
                     <div
@@ -88,12 +88,13 @@ function Navbar({e , setQuery}){
                                     }`}
                         onClick={()=>{navigate('/price')}}
                     >
-                        {/* ⭐ Icon */}
+                        {/* Icon */}
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="22"
                         height="22"
                         viewBox="0 0 30 30"
+                        className=" transition-transform duration-300 mt-1 ease-out group-hover:rotate-45 group-active:rotate-0 "
                         >
                         <defs>
                             <linearGradient id="starGradientSmall" gradientTransform="rotate(60)">
@@ -103,7 +104,16 @@ function Navbar({e , setQuery}){
                         </defs>
 
                         <path
-                            fill="url(#starGradientSmall)"
+                        fill={
+                            credits === "Free"
+                                ? dark
+                                ? "#ffffff"   // Free + dark → white
+                                : "#000000"   // Free + light → black
+                                : credits === "Plus"
+                                ? "#22D3EE"   // Plus → cyan (Tailwind cyan-400)
+                                : "url(#starGradientSmall)" // Pro → gradient
+                            }
+
                             d="M14.217,19.707l-1.112,2.547c-0.427,0.979-1.782,0.979-2.21,0l-1.112-2.547
                             c-0.99-2.267-2.771-4.071-4.993-5.057L1.73,13.292
                             c-0.973-0.432-0.973-1.848,0-2.28l2.965-1.316
@@ -116,7 +126,9 @@ function Navbar({e , setQuery}){
                         </svg>
 
                         {/* 🏷️ Text */}
-                        <p className="font-bold  text-white light:text-primaryD">Cr: 0</p>
+                        <p  className={`font-bold shadow-2xl ${credits === "Pro"? "bg-gradient-to-r font-bold from-blue-400  to-pink-400 bg-clip-text text-transparent": ""}
+                                                             ${credits === "Plus"? "bg-gradient-to-r font-bold from-teal-500  to-cyan-400 bg-clip-text text-transparent": ""}
+                        `}>{credits==="Plus"?token+" tk":credits}</p>
                     </button>
                     </div>
 

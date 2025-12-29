@@ -30,7 +30,7 @@ function Settings(e) {
       bg-secondaryD light:bg-secondary
       `}
     >
-      <Navbar e={e} />
+      <Navbar e={e} credits={e.credits} token={e.token}/>
 
       <div className="max-w-[1100px]  mx-auto px-6 py-8 overflow-hidden">
 

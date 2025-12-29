@@ -10,12 +10,11 @@ function Detail(e) {
   const navigate = useNavigate();
   const { id } = useParams();
   const post = posts.find((p) => p.id === parseInt(id));
-  
   if (!post) return <p>Post not found</p>;
 
   return (
     <div className={`w-full min-h-screen ${!dark ? "light" : ""} bg-secondaryD light:bg-secondary flex flex-col`}>
-      <Navbar e={e} />
+      <Navbar e={e} credits={e.credits} />
 
       <button
         className="m-3 w-25 flex items-center gap-2 bg-primaryD light:bg-secondary border border-white/20 px-4 py-2 rounded-lg text-white light:text-black text-sm font-semibold hover:scale-105 hover:shadow-md transition"

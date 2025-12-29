@@ -28,7 +28,7 @@ function Create(e) {
       alert("First LogIn/SignIn for posting!");
       navigate("/auth");
     }
-  }, [e.isAuth, navigate]);
+  }, [e.isAuth, navigate,e.token]);
 
   const handlePost = () => {
     // Logic for posting the content
@@ -42,7 +42,7 @@ function Create(e) {
         <div
           className={`${dark ? "" : "light"} min-h-screen h-screen text-white light:text-primaryD bg-secondaryD light:bg-secondary overflow-hidden`}
         >
-          <Navbar e={e} />
+          <Navbar e={e} credits={e.credits} token={e.token}/>
 
           <div className="flex flex-row max-w-6xl gap-5 justify-center mx-auto my-5 h-10 w-full ">
             <div className="relative w-100 group">
@@ -60,7 +60,21 @@ function Create(e) {
                               bg-triaryD text-white light:hover:text-primaryD hover:bg-primaryD
                               light:bg-gray-200 light:text-primaryD light:hover:bg-gray-100
                               transition font-semibold flex items-center justify-center overflow-hidden gap-2"
-                    onClick={() => navigate('/price')}
+                    onClick={() => {
+                      if (e.token <= 0) {
+                        e.setCredits("Free");
+                        alert("Buy! AI Token to use this Feature")
+                        navigate('/price');
+                        return;
+                      }
+                      if (e.credits === "Free") {
+                        navigate('/price'); 
+                      } 
+                      else if (e.credits === "Plus") {
+                        e.setToken(prev => prev - 10);
+                      }
+                    }}
+
                   >
                     {/* Icon */}
                     <span className="flex items-center">
@@ -68,7 +82,8 @@ function Create(e) {
                         xmlns="http://www.w3.org/2000/svg"
                         width="22"
                         height="22"
-                        viewBox="0 0 30 30"
+                        viewBox="0 0 30 30" 
+                        className=" transition-transform duration-300 ease-out group-hover:rotate-45 group-active:rotate-0 group-hover:translate-y-1 "
                       >
                         <defs>
                           <linearGradient id="starGradient" gradientTransform="rotate(60)">
@@ -118,7 +133,20 @@ function Create(e) {
                               bg-triaryD text-white light:hover:text-primaryD hover:bg-primaryD
                               light:bg-gray-200 light:text-primaryD light:hover:bg-gray-100
                               transition font-semibold flex items-center justify-center overflow-hidden gap-2"
-                    onClick={() => navigate('/price')}
+                    onClick={() => {
+                      if (e.token <= 0) {
+                        e.setCredits("Free");
+                        alert("Buy! AI Token to use this Feature")
+                        navigate('/price');
+                        return;
+                      }
+                      if (e.credits === "Free") {
+                        navigate('/price'); 
+                      } 
+                      else if (e.credits === "Plus") {
+                        e.setToken(prev => prev - 20);
+                      }
+                    }}
                   >
                     {/* Icon */}
                     <span className="flex items-center">
@@ -127,6 +155,8 @@ function Create(e) {
                         width="22"
                         height="22"
                         viewBox="0 0 30 30"
+                        className=" transition-transform duration-300 ease-out group-hover:rotate-45 group-active:rotate-0 group-hover:translate-y-1 "
+                       
                       >
                         <defs>
                           <linearGradient id="starGradient" gradientTransform="rotate(60)">

@@ -27,10 +27,11 @@ function Home(e) {
       return(post.category?.toLowerCase().includes(text2));
       
     });
+    console.log(e);
   return (
     <div className={`h-screen w-full flex flex-col bg-primaryD light:bg-primary text-white light:text-txPrimary ${!dark?"light":""}`}>
       {/* Navbar */}
-      <Navbar e={e} setQuery={setQuery}/>
+      <Navbar e={e} setQuery={setQuery} credits={e.credits} token={e.token}/>
 
       {/* Content */}
         <div className=" w-full  flex flex-row overflow-hidden"> 

@@ -8,7 +8,8 @@ import Settings from './Settings.jsx';
 import Create from './CreatePost.jsx';
 import Price from './Pricing.jsx';
 function App() {
-
+  const [credits,setCredits] =useState('Free');
+  const [token,setToken] =useState(0);
   const [isAuth, setIsAuth] = useState(
     localStorage.getItem("auth") === "true"
   );
@@ -25,13 +26,13 @@ function App() {
 
   return (
       <Routes>
-        <Route path="/" element={<Home isAuth={isAuth} logout={logout} />} />
+        <Route path="/" element={<Home isAuth={isAuth} logout={logout} credits={credits} token={token} />} />
         <Route path="/auth" element={<SignUp login={login} />} />
         <Route path="*" element={<Error />}/>
-        <Route path="/detail/:id" element={<Detail isAuth={isAuth} logout={logout}  />}/>
-        <Route path="/settings" element={<Settings isAuth={isAuth} logout={logout}/>} />
-        <Route path="/createPost" element={<Create isAuth={isAuth} logout={logout}/>} />
-        <Route path="/price" element={<Price isAuth={isAuth} logout={logout}/>} />
+        <Route path="/detail/:id" element={<Detail isAuth={isAuth} logout={logout} credits={credits} token={token}/>}/>
+        <Route path="/settings" element={<Settings isAuth={isAuth} logout={logout} credits={credits} token={token}/>} />
+        <Route path="/createPost" element={<Create isAuth={isAuth} logout={logout} credits={credits} token={token} setToken={setToken} setCredits={setCredits} />} />
+        <Route path="/price" element={<Price isAuth={isAuth} logout={logout} credits={credits} setCredits={setCredits} token={token} setToken={setToken}/>} />
       </Routes>
   );
 }
