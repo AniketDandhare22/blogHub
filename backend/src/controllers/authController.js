@@ -3,8 +3,12 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 //token creation
-const createToken = (id,remember =false) =>{
-    return jwt.sign({id} , process.env.SECRET_KEY,{expiresIn:remember? "7d" : "1h"});
+const createToken = (id, remember) => {
+    return jwt.sign(
+        { id }, 
+        process.env.SECRET_KEY, 
+        { expiresIn: remember ? "7d" : "1h" }
+    );
 }
 
 //Sign-in logic (first-timer)
@@ -19,7 +23,7 @@ export const register =async (req,res)=>{
         let user = await userModel.create({
         username,email,password:hash,
         });
-        const token = createToken(user._id)
+        const token = createToken(user._id ,false)
         res.cookie("token", token, {
         httpOnly: true,
         secure: true,       // REQUIRED: Tells browser "This is safe for HTTPS"
@@ -42,9 +46,9 @@ export const login =async (req,res)=>{
     try{
         const checkUser =await userModel.findOne({email});
         if(!checkUser) return res.status(401).json({message:"User not found!"})
-        const isMatch = bcrypt.compare(password, checkUser.password);
+        const isMatch =await bcrypt.compare(password, checkUser.password);
         if(!isMatch) return res.status(401).json({ message: "Invalid user, Unauthorized Access!" });
-        const token = createToken(checkUser._id);
+        const token = createToken(checkUser._id,remember);
         const oneHour = 60 * 60 * 1000;
         const sevenDays = 7 * 24 * 60 * 60 * 1000;
         
