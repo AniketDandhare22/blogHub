@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const login = () => {
-    api.get("/auth/me")
+  const login =async () => {
+    await api.get("/auth/me")
     .then(res => {
       if (res.data?.message) {
         setUser(null);

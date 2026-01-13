@@ -39,7 +39,7 @@ Router.get(
   }
 );
 
-Router.post("/signin",register);
+Router.post("/signup",register);
 Router.delete("/deleteAccount",verifyToken,deleteAcc);
 Router.put("/updateUsername",verifyToken,updateUserName);
 Router.post("/login",login);

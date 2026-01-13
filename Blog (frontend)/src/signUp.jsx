@@ -60,7 +60,6 @@ function App() {
           // ----------------------------------
           // SIGNUP LOGIC
           // ----------------------------------
-          // ⚠️ FIX: Changed endpoint from "/signin" to "/signup" (or "/register")
           // Check your backend route name!
           await api.post("/auth/signup", { 
             username,
