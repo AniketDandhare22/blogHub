@@ -44,7 +44,7 @@ export const login =async (req,res)=>{
         if(!checkUser) return res.status(401).json({message:"User not found!"})
         const isMatch = bcrypt.compare(password, checkUser.password);
         if(!isMatch) return res.status(401).json({ message: "Invalid user, Unauthorized Access!" });
-
+        const token = createToken(checkUser._id);
         const oneHour = 60 * 60 * 1000;
         const sevenDays = 7 * 24 * 60 * 60 * 1000;
         
