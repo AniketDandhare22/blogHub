@@ -33,39 +33,62 @@ function App() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit =async () => {
-    try{
+  const handleSubmit = async () => {
+      try {
         setLoading(true);
         setSuccess(false);
+
+        // 1. Get the current value of 'remember' from your state
+        const { email, password, username } = form; 
+        // Assuming you have a 'remember' state variable, pass it here
+        const rememberMe = remember; // or false if not used
+
         if (status) {
-          // LOGIN
+          // ----------------------------------
+          // LOGIN LOGIC
+          // ----------------------------------
           await api.post("/auth/login", {
-            email: form.email,
-            password: form.password
+            email,
+            password,
+            remember: rememberMe // ✅ Pass this so backend sets correct cookie duration
           });
-        login(); 
+          
+          // Update global context that user is logged in
+          login(); 
+          
         } else {
-          // SIGNUP
-          await api.post("/auth/signin", {
-            username: form.username,
-            email: form.email,
-            password: form.password
+          // ----------------------------------
+          // SIGNUP LOGIC
+          // ----------------------------------
+          // ⚠️ FIX: Changed endpoint from "/signin" to "/signup" (or "/register")
+          // Check your backend route name!
+          await api.post("/auth/signup", { 
+            username,
+            email,
+            password
           });
-        login(); 
+          
+          // Auto-login after signup (if your backend supports it)
+          // Or you might want to ask them to login manually
+          login(); 
         }
 
         setSuccess(true);
         
-        setTimeout( () => {
+        // Redirect
+        setTimeout(() => {
           navigate("/");
         }, 800);
 
       } catch (err) {
-        alert(err.response?.data?.message || "Auth failed");
+        console.error("Auth Error:", err);
+        // Safe access to error message
+        const errorMsg = err.response?.data?.message || "Authentication failed";
+        alert(errorMsg);
       } finally {
         setLoading(false);
       }
-  };
+    };
   const isDisabled = loading || !form.email || !form.password || (!status && !form.username); 
   // username only required when Sign Up
   return (
