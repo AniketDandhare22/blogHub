@@ -63,13 +63,12 @@ function Create() {
           if (!generatedImage && image) {
             formData.append("image", image);
           }
-          const res = await api.post("/post/createPost", formData, {
+          await api.post("/post/createPost", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
           });
 
-          console.log("Post created:", res.data);
 
           // reset form
           setTitle("");
