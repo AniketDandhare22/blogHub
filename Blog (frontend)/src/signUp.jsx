@@ -20,6 +20,7 @@ function App() {
   const [status ,setStatus] =  useState(true);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [remember, setRemember] = useState(false);
   const navigate = useNavigate(); 
 
   const handleOauth = () => {
@@ -151,6 +152,7 @@ function App() {
                   className={`w-full border-transparent ${status?"text-purple-800 focus:ring-2 focus:ring-purple-800":"text-orange-500 focus:ring-2 focus:ring-orange-500"} rounded-lg px-4 py-2  bg-white`}
                 />
 
+
                 <button
                   type="button"
                   disabled={isDisabled}
@@ -158,7 +160,7 @@ function App() {
                   className={`w-full py-2 rounded-lg font-semibold transition ${
                     status ? "bg-purple-800 text-white hover:bg-purple-900" : "bg-orange-500 text-white hover:bg-orange-600"
                   } ${isDisabled ? "cursor-not-allowed bg-gray-300" : ""}`}
-                >
+                  >
                   {loading
                     ? status
                       ? "Logging In..."
@@ -168,9 +170,31 @@ function App() {
                     : "Sign Up"}
                 </button>
 
+                    {status && <div className="flex w-full items-center justify-between px-2"> {/* Container for spacing */}
+      
+                    <label className="flex items-center space-x-3 cursor-pointer group">
+                      
+                      {/* The Checkbox Input */}
+                      <input 
+                        type="checkbox" 
+                        checked={remember} 
+                        onChange={(e) => setRemember(e.target.checked)} 
+                        className="w-5 h-5 accent-logo2 cursor-pointer  focus:ring-0 focus:ring-offset-0" 
+                      />
+                      
+                      {/* The Text */}
+                      <span className="text-gray-400 text font-medium transition-colors duration-200 group-hover:text-white group-light:hover:text-logo2 light:text-black">
+                        Remember Me
+                      </span>
+                      
+                    </label>
+                    
+                    <a className="text-white hover:text-logo2 active:scale-97 light:text-black " href="#" >forgot Password?</a>
+                  </div>
+                    }
                 {success && (
                   <p className={`${status?"text-logo2":"text-logo"} text-sm font-medium`}>
-                     {status ? "✔ Logged in successfully" : "✔ Signed up successfully"}
+                     {status ? "Logged in successfully" : "Signed up successfully"}
                   </p>
                 )}
 

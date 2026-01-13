@@ -20,7 +20,12 @@ export const register =async (req,res)=>{
         username,email,password:hash,
         });
         const token = createToken(user._id)
-        res.cookie("token",token,{ httpOnly: true });
+        res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,       // REQUIRED: Tells browser "This is safe for HTTPS"
+        sameSite: 'None',   // REQUIRED: Tells browser "Allow this cross-domain"
+        maxAge: 1 * 24 * 60 * 60 * 1000 // (Optional) Matches your 1d token expiry
+        });
         res.status(201).json({user: { username: user.username, email: user.email }});
     }
     catch(err){
@@ -37,14 +42,22 @@ export const login =async (req,res)=>{
     try{
         const checkUser =await userModel.findOne({email});
         if(!checkUser) return res.status(401).json({message:"User not found!"})
-        const isMatch = await bcrypt.compare(password, checkUser.password);
+        const isMatch = bcrypt.compare(password, checkUser.password);
         if(!isMatch) return res.status(401).json({ message: "Invalid user, Unauthorized Access!" });
 
-        const token = createToken(checkUser._id, remember);
+        const oneHour = 60 * 60 * 1000;
+        const sevenDays = 7 * 24 * 60 * 60 * 1000;
+        
+        const cookieDuration = remember ? sevenDays : oneHour;
+
+        // 4. Send the Cookie (With the Fixes + Dynamic Duration)
         res.cookie("token", token, {
-            httpOnly: true,
-            maxAge: remember ? 7*24*60*60*1000 : 1*60*60*1000,
+        httpOnly: true,
+        secure: true,       // CRITICAL for Vercel
+        sameSite: 'None',   // CRITICAL for Cross-origin
+        maxAge: cookieDuration // <--- This applies the checkbox logic
         });
+        
         res.status(200).json({ message: "Credentials Match!", user: { username: checkUser.username, email: checkUser.email } });
 
     }
