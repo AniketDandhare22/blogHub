@@ -78,8 +78,13 @@ export const getMe=async (req,res)=>{
 
 //logout
 export const logout = (req, res) => {
-    res.cookie("token", "", { httpOnly: true, expires: new Date(0) });
-    res.status(201).json({ message: "Logged out successfully" });
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,       // ⚠️ MUST match the login setting
+        sameSite: "None",   // ⚠️ MUST match the login setting
+    });
+
+    res.status(200).json({ message: "Logged out successfully" });
 }
 
 //update user
