@@ -8,20 +8,23 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get("/auth/me")
-    .then(res => {
-      if (res.data?.message) {
-        setUser(null);
-      } else {
-        setUser(res.data);
-      }
-    })
-    .catch(() => setUser(null))
-    .finally(() => setLoading(false));
-  }, []);
+  const checkAuth = async () => {
+    try {
+      const res = await api.get("/auth/me");
+      setUser(res.data);
+    } catch {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const timer = setTimeout(checkAuth, 300);
+  return () => clearTimeout(timer);
+}, []);
+
 
   const logout = async () => {
-    await api.get("auth/logout");
+    await api.get("/auth/logout");
     setUser(null);
   };
 
