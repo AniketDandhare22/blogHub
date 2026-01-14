@@ -269,7 +269,7 @@ function Create() {
                 className="w-[20%] mb-4 px-4 font-semibold py-2 rounded-md bg-secondaryD light:bg-primary  focus:outline-none focus:ring-2 focus:ring-logo light:focus:ring-logo2"
                 >
                 <option value="Select">Select Category</option>
-                <option value="Techonlogy">Techonlogy</option>
+                <option value="Technology">Techonlogy</option>
                 <option value="Design">Design</option>
                 <option value="Business">Business</option>
                 <option value="Lifestyle">Lifestyle</option>

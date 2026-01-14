@@ -40,7 +40,7 @@ function ProfileDropdown() {
           bg-primaryD light:bg-white text-white light:text-txPrimary overflow-hidden z-50">
 
           {/* Avatar Image */}
-          {isAuth && (<div className="flex justify-center md:items-start lg:items-start items-center flex-col lg:flex-row md:flex-row mt-5">
+          {isAuth && (<div className="flex justify-center  items-center flex-col  mt-5">
             <img
               src={user?.profilePic} // Replace with user image if available
               alt="Profile"
