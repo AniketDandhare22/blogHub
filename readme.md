@@ -1,7 +1,7 @@
 # 🚀 BlogHub - AI-Powered Content Platform
 
 <div align="center">
-  <img src="./Blog/src/assets/logo.png" alt="BlogHub Logo" width="150" height="150">
+  <img src="./Blog (frontend)/src/assets/logo.png" alt="BlogHub Logo" width="150" height="150">
   <img src="./ScreenShot/Gemini_Generated_Image_raafpwraafpwraaf.png" alt="BlogHub Logo" width="1100" height="650">
   
   <h3 align="center">Read. Write. Create.</h3>
