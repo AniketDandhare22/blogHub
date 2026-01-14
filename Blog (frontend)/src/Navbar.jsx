@@ -56,8 +56,8 @@ function Navbar({setQuery}){
                 <div className="w-full h-full justify-center hidden md:flex lg:flex">
                 <Search theme={dark} toQuery={setQuery} />
                 </div>
-                <div className="items-center flex px-3 w-[40%] justify-end gap-2">
-                    <div className="relative hidden lg:block w-25 h-10 group">
+                <div className="items-center flex md:px-3 lg:px-3 px-1 w-[40%] justify-end md:gap-2 lg:gap-2 gap-1">
+                    <div className="relative block w-25 h-10 group">
   
                     {/* 🌈 Conic Gradient Glow */}
                     <div

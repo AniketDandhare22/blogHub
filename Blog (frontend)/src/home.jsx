@@ -131,8 +131,8 @@ function Home() {
                 <button
                   onClick={() => setCollapsed(!collapsed)}
                   className={`
-                    absolute top-1/8 -translate-y-1/4 -right-4 z-50
-                    w-8 h-8 rounded-full flex items-center justify-center shadow-md
+                    absolute hidden lg:flex top-1/8 -translate-y-1/4 -right-4 z-50
+                    w-8 h-8 rounded-full md:flex items-center justify-center shadow-md
                     border light:border-txSecondaryD/50 border-white/30
                     ${dark
                       ? "bg-btncolorD text-white hover:bg-btncolorD/90"

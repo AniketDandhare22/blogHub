@@ -145,7 +145,7 @@ function Settings() {
                 <img
                   src={avatarSrc}
                   alt="profile"
-                  className="w-40 h-40 rounded-full object-cover border-2 border-btncolor"
+                  className="lg:w-40 lg:h-40 md:w-40 md:h-40 w-20 h-20 rounded-full object-cover border-2 border-btncolor"
                 />
 
                 {isAuth && !avatarEditing && (
@@ -191,13 +191,13 @@ function Settings() {
 
             {/* User Info */}
             <div className="flex flex-col gap-1">
-              <h2 className="text-2xl font-semibold">
+              <h2 className="lg:text-2xl md:text-2xl text-lg font-semibold">
                 {isAuth ? user.username : "Guest User"}
               </h2>
-              <p className="text-lg opacity-70">
+              <p className="lg:text-lg md:text-lg text-sm opacity-70">
                 {isAuth ? user.email : "Login to manage your account"}
               </p>
-              <p className="text opacity-60">
+              <p className="lg:text md:text text-xs opacity-60">
                 Member since {formatDate(user?.createdAt)}
               </p>
             </div>
