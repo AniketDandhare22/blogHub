@@ -85,25 +85,18 @@ function Detail() {
         
         {/* Main Content Area */}
         <div className="flex flex-col items-center justify-center w-full flex-grow gap-6">
-          
-          {/* Image: Fixed width, smooth pulse, subtle drop shadow */}
-          <img 
-            className="w-48 md:w-64 object-contain animate-pulse drop-shadow-xl" 
-            src="./assets/animate.png" 
-            alt="Loading Logo" 
-          />
-
+        
           {/* Text & Dots Container */}
           <div className="flex items-end gap-1">
-            <span className="text-xl font-bold tracking-widest text-orange-400 light:text-purple-800 uppercase">
+            <span className="text-lg font-bold tracking-widest text-orange-400 light:text-purple-800 uppercase">
               Loading
             </span>
             
             {/* Custom Bouncing Dots using Tailwind delays */}
             <div className="flex gap-1 mb-1">
-              <div className="h-2 w-2 bg-orange-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-              <div className="h-2 w-2 bg-orange-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-              <div className="h-2 w-2 bg-orange-400 rounded-full animate-bounce"></div>
+              <div className="h-1 w-1 bg-orange-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+              <div className="h-1 w-1 bg-orange-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+              <div className="h-1 w-1 bg-orange-400 rounded-full animate-bounce"></div>
             </div>
           </div>
 
