@@ -149,7 +149,7 @@ function VideoCard({ data, theme }) {
         </h3>
 
         {/* decription */}
-        <div className="flex items-center justify-between text-sm opacity-80">
+        <div className="flex items-center justify-between text-sm opacity-80 line-clamp-2">
           <span> {data.detail}</span>
         </div>
 
@@ -160,13 +160,13 @@ function VideoCard({ data, theme }) {
       </div>
         {/* Actions */}
         <div className="flex gap-4 pt-2">
-          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD transition">
+          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD light:hover:bg-secondary transition">
             ❤️ {data.likes.length}
           </button>
-          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD transition">
+          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD light:hover:bg-secondary transition">
             💬 {data.comments || 0}
           </button>
-          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD transition">
+          <button className="px-3 py-1 text-sm rounded-lg bg-secondaryD/70 light:bg-secondary hover:bg-secondaryD light:hover:bg-secondary transition">
             🔗 Share
           </button>
         </div>

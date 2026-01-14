@@ -162,12 +162,12 @@ function Detail() {
                   {/* Actions */}
                   <div className="flex gap-3">
                     {post.likes && (
-                      <button className="flex items-center gap-1 px-4 py-2 text-sm rounded-lg text-white light:text-black light:bg-secondary bg-secondaryD/70 hover:bg-secondaryD transition"
+                      <button className="flex items-center gap-1 px-4 py-2 text-sm rounded-lg text-white light:text-black light:bg-secondary bg-secondaryD/70 light:hover:bg-secondary transition"
                       onClick={handleLike}>
                         ❤️ {post.likes.length}
                       </button>
                     )}
-                    <button className="flex items-center gap-1 px-4 py-2 text-sm rounded-lg text-white light:text-black light:bg-secondary bg-secondaryD/70 hover:bg-secondaryD transition">
+                    <button className="flex items-center gap-1 px-4 py-2 text-sm rounded-lg text-white light:text-black light:bg-secondary bg-secondaryD/70 hover:bg-secondaryD  light:hover:bg-secondary  transition">
                       🔗 Share
                     </button>
                   </div>
