@@ -149,8 +149,8 @@ function VideoCard({ data, theme }) {
         </h3>
 
         {/* decription */}
-        <div className="flex items-center justify-between text-sm opacity-80 line-clamp-2">
-          <span> {data.detail}</span>
+        <div className="flex items-center justify-between text-sm opacity-80 ">
+          <span className="line-clamp-2"> {data.detail}</span>
         </div>
 
         {/* Meta */}
