@@ -80,7 +80,7 @@ function Detail() {
     
     if (!post) {
     return (
-      <div className="w-full h-screen flex flex-col bg-secondaryD light:bg-secondary">
+      <div className={` ${!dark?"light":""}w-full h-screen flex flex-col bg-secondaryD light:bg-secondary`}>
         <Navbar />
         
         {/* Main Content Area */}
@@ -94,9 +94,9 @@ function Detail() {
             
             {/* Custom Bouncing Dots using Tailwind delays */}
             <div className="flex gap-1 mb-1">
-              <div className="h-1 w-1 bg-orange-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-              <div className="h-1 w-1 bg-orange-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-              <div className="h-1 w-1 bg-orange-400 rounded-full animate-bounce"></div>
+              <div className="h-1 w-1 bg-logo rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+              <div className="h-1 w-1 bg-logo rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+              <div className="h-1 w-1 bg-logo rounded-full animate-bounce"></div>
             </div>
           </div>
 
