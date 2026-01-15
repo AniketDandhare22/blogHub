@@ -383,9 +383,9 @@ function Create() {
 
           
           {showPreviewConfirm && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center w-2/3 bg-black/70">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
               
-              <div className="bg-primaryD light:bg-white w-[90%] max-w-md rounded-xl p-5 shadow-xl relative">
+              <div className="bg-primaryD light:bg-white w-[90%] max-w-lg rounded-xl p-5 shadow-xl relative">
 
                 <h3 className="text-lg font-semibold mb-3">
                   Use this image?
