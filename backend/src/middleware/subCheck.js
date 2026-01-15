@@ -3,8 +3,6 @@ import userModel from "../models/user.js";
 const checkSubscription = async (req, res, next) => {
   try {
     const user = await userModel.findById(req.userId).select("-password");
-      .select("plan planExpiry aiToken");
-
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
