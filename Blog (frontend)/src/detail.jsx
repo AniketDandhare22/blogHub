@@ -9,7 +9,7 @@ import { FaLock } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { HiTrash } from "react-icons/hi";
 import { FaEdit } from "react-icons/fa";
-
+import Loader from "./component/loader.jsx";
 
 
 function Detail() {
@@ -84,8 +84,9 @@ function Detail() {
         <Navbar />
         
         {/* Main Content Area */}
-        <div className="flex flex-col items-center justify-center w-full flex-grow gap-6">
-        
+        <div className="flex flex-col items-center justify-center w-full gap-6">
+
+          <Loader/>
           {/* Text & Dots Container */}
           <div className="flex items-end gap-1">
             <span className="text-lg  tracking-widest text-orange-400 light:text-purple-800 uppercase">
@@ -94,9 +95,9 @@ function Detail() {
             
             {/* Custom Bouncing Dots using Tailwind delays */}
             <div className="flex gap-1 mb-1">
-              <div className="h-1 w-1 bg-logo rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-              <div className="h-1 w-1 bg-logo rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-              <div className="h-1 w-1 bg-logo rounded-full animate-bounce"></div>
+              <div className="h-1 w-1 bg-logo light:text-purple-800 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+              <div className="h-1 w-1 bg-logo light:text-purple-800 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+              <div className="h-1 w-1 bg-logo light:text-purple-800 rounded-full animate-bounce"></div>
             </div>
           </div>
 
