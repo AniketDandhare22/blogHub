@@ -80,7 +80,7 @@ function Detail() {
     
     if (!post) {
     return (
-      <div className={` ${!dark?"light":""}w-full h-screen flex flex-col bg-secondaryD light:bg-secondary`}>
+      <div className={` ${!dark?"light":""} w-full h-screen flex flex-col bg-secondaryD light:bg-secondary`}>
         <Navbar />
         
         {/* Main Content Area */}
@@ -88,7 +88,7 @@ function Detail() {
         
           {/* Text & Dots Container */}
           <div className="flex items-end gap-1">
-            <span className="text-lg font-bold tracking-widest text-orange-400 light:text-purple-800 uppercase">
+            <span className="text-lg  tracking-widest text-orange-400 light:text-purple-800 uppercase">
               Loading
             </span>
             
