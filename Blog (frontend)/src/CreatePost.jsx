@@ -114,6 +114,7 @@ function Create() {
       try {
         const res = await api.post("/aiFeature/generate-post-image",{ prompt : title+category});
         setGeneratedImage(res.data.imageUrl);
+        setShowPreviewConfirm(true);
       } catch (err) {
         console.error(
           "Not Generated! Try Again",
@@ -382,7 +383,7 @@ function Create() {
 
           
           {showPreviewConfirm && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+            <div className="fixed inset-0 z-50 flex items-center justify-center w-2/3 bg-black/70">
               
               <div className="bg-primaryD light:bg-white w-[90%] max-w-md rounded-xl p-5 shadow-xl relative">
 

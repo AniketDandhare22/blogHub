@@ -42,7 +42,7 @@ function Home() {
 
      const filteredPosts =useMemo (() => {
         const now = Date.now();
-        const oneDay = 24 * 60 * 60 * 1000;
+        const oneWeek = 7 * 24 * 60 * 60 * 1000;
 
         // 🔥 TRENDING
         if (query2 === "Trending") {
@@ -52,7 +52,7 @@ function Home() {
 
             return (
               likesCount > 0 &&
-              now - createdTime <= oneDay &&
+              now - createdTime <= oneWeek &&
               (
                 post.title?.toLowerCase().includes(query.toLowerCase()) ||
                 post.detail?.toLowerCase().includes(query.toLowerCase())
