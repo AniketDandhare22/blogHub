@@ -2,7 +2,7 @@ import userModel from "../models/user.js";
 
 const checkSubscription = async (req, res, next) => {
   try {
-    const user = await userModel.findById(req.userId)
+    const user = await userModel.findById(req.userId).select("-password");
       .select("plan planExpiry aiToken");
 
     if (!user) {
