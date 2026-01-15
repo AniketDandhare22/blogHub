@@ -10,7 +10,7 @@ import Gen from "./component/Generatinganimate.jsx"
 
  // AI icon
 function Create() {
-  const { user,isAuth, setUser } = useAuth();
+  const { user,isAuth} = useAuth();
   const { dark } = useContext(ThemeData);
   const [posting, setPosting] = useState(false);
   const [genload, setGenload ] = useState(false);
@@ -98,7 +98,6 @@ function Create() {
           const res = await api.post("/aiFeature/generate-post",{title , category ,detail});
           setTitle(res.data.result.title);
           setDetail(res.data.result.content);
-          setUser(res.data.User);
         } catch (err) {
           console.error(
             "Not Generated! Try Again",
@@ -116,7 +115,6 @@ function Create() {
         const res = await api.post("/aiFeature/generate-post-image",{ prompt : title+category});
         setGeneratedImage(res.data.imageUrl);
         setShowPreviewConfirm(true);
-        setUser(res.data.User);
       } catch (err) {
         console.error(
           "Not Generated! Try Again",

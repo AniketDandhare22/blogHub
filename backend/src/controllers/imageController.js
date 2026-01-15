@@ -131,7 +131,6 @@ export const generatePostImage = async (req, res) => {
         res.json({ 
             success: true, 
             imageUrl: result.secure_url,
-            User:user, 
             message: "Image Generated Successfully!" 
         });
 
