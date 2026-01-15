@@ -385,7 +385,7 @@ function Create() {
           {showPreviewConfirm && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
               
-              <div className="bg-primaryD light:bg-white w-[90%] max-w-lg rounded-xl p-5 shadow-xl relative">
+              <div className="bg-primaryD light:bg-white w-[90%] max-w-6xl rounded-xl p-5 shadow-xl relative">
 
                 <h3 className="text-lg font-semibold mb-3">
                   Use this image?
@@ -439,7 +439,7 @@ function Create() {
           </div>}
           {aigenload &&<p className="absolute top-1/8 left-3/10 text-sm mt-1 ml-1"><span className="loading-dots px-2">Powered By Gemini 2.5 </span></p>}
           {aigenload &&
-          <div className="absolute inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 flex items-center justify-center z-50 bg-black/10">
             <Gen />
           </div>}
           
@@ -448,7 +448,7 @@ function Create() {
           </div>}
           {genload &&<p className="absolute top-1/8 left-6/10 text-sm mt-1 ml-1"><span className="loading-dots px-2">Powered By Dale.E </span></p>}
           {genload &&
-          <div className="absolute inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 flex items-center justify-center z-50 bg-black/10">
             <Gen />
           </div>}
 
