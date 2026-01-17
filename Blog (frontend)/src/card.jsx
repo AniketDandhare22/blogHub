@@ -24,7 +24,7 @@ function BlogCard({ data, theme }) {
   return (
     <div
       className={`
-        w-full max-w-[900px] m-10 h-fit
+        w-full max-w-[900px] lg:mx-10 md:mx-10 mx-3 my-6 h-fit
         rounded-2xl overflow-hidden
         shadow-sm hover:shadow-lg hover:-translate-y-1
         transition cursor-pointer
@@ -35,7 +35,7 @@ function BlogCard({ data, theme }) {
       onClick={() => navigate(`/detail/${data._id}`)}
     >
       {/* Image */}
-      <div className="w-full h-80 overflow-hidden">
+      <div className="w-full lg:h-90 md:h-90 h-100 overflow-hidden">
         <img
           src={data.postMedia}
           alt={data.title}

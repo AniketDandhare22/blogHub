@@ -61,7 +61,7 @@ function VideoCard({ data, theme }) {
   return (
     <div
       className={`
-        w-full max-w-[900px] m-10 h-fit
+        w-full max-w-[900px] lg:mx-10 md:mx-10 mx-3 my-6  h-fit
         rounded-2xl overflow-hidden
         bg-primaryD light:bg-primary
         shadow-sm hover:shadow-lg transition
@@ -75,7 +75,7 @@ function VideoCard({ data, theme }) {
       }}
     >
       {/* VIDEO */}
-      <div className="relative w-full h-[450px] bg-black">
+      <div className="relative w-full lg:h-110 md:h-110 h-16 bg-black">
         <video
           ref={videoRef}
           src={data.Video}
