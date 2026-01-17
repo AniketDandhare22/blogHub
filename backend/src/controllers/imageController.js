@@ -102,7 +102,7 @@ export const generatePostImage = async (req, res) => {
 
         // 3. NEW SDK CALL (The code you provided)
         const imageBlob = await client.textToImage({
-            model: "stabilityai/stable-diffusion-xl-base-1.0", // <--- Free & Reliable
+            model: "black-forest-labs/FLUX.1-schnell",// <--- Free & Reliable
             inputs: prompt, // 4-8 steps is usually enough for Lightning models
         });
 
