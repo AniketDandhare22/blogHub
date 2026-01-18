@@ -72,9 +72,13 @@ function BlogCard({ data, theme }) {
 
         {/* Meta */}
         <div className="flex items-center justify-between text-sm text-white light:text-primaryD pt-2">
-          <div className="flex items-center gap-2">
-            <span className="p-1 rounded-full bg-white/10 light:bg-primary ">👤 {data.author || "Anonymous"}</span>
-            <span  className="p-1 rounded-full bg-white/10 light:bg-primary"> {data.likes.length} Likes</span>
+          <div className="flex items-center gap-1">
+            <span className="py-1 px-3 rounded-fulltext-white light:text-black
+            bg-secondaryD/70 light:bg-secondary
+            hover:bg-secondaryD light:hover:bg-gray-200 transition">👤 {data.author || "Anonymous"}</span>
+            <span  className="py-1 px-3  rounded-full text-white light:text-black
+            bg-secondaryD/70 light:bg-secondary
+            hover:bg-secondaryD light:hover:bg-gray-200 transition"> {data.likes.length} Likes</span>
           </div>
           <span>🕛 {getDaysSincePost(data.createdAt)} days</span>
         </div>
