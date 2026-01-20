@@ -159,8 +159,8 @@ function Navbar({setQuery}){
                         <FiMoon className="text-triaryD" size={22} />
                     )}
                     </button>
-                    {!isAuth?(<Btn theme={dark}/>):(<AuthIcon/>)}
-                    <Profile/>
+                    {!isAuth?(<Btn theme={dark}/>):(<AuthIcon setTig={setLogoutTrigger}/>)}
+                    <Profile setTig={setLogoutTrigger}/>
                 </div>
             </div>
       </>

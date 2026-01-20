@@ -4,7 +4,7 @@ import { useTheme } from "../context/useTheme";// replace with actual user image
 import { useNavigate } from "react-router-dom";
 import {useAuth} from "../context/AuthProvider"
 
-function ProfileDropdown() {
+function ProfileDropdown({setLogoutTrigger}) {
   const { user, isAuth, logout, loading } = useAuth();
   const navigate = useNavigate();
   const { dark, toggleTheme } = useTheme();
@@ -91,6 +91,7 @@ function ProfileDropdown() {
                   className="w-full py-2 cursor-pointer text-md font-semibold rounded-lg hover:bg-logo/30 light:hover:bg-logo2/30 transition"
                   onClick={() => {
                     setOpen(false);
+                    setLogoutTrigger(true);
                     logout();
                   }}
                 >

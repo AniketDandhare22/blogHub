@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/useTheme";
 import {useAuth} from "../context/AuthProvider"
 
-function AuthBtn() {
+function AuthBtn({setLogoutTrigger}) {
   
   const { user, logout} = useAuth();
   const navigate = useNavigate();
@@ -80,6 +80,7 @@ function AuthBtn() {
             className="w-full px-6 py-3 text-md font-semibold rounded-b-xl hover:bg-logo/20 light:hover:bg-logo2/20 transition mt-2"
             onClick={() => {
             setOpen(false); // close dropdown
+            setLogoutTrigger(true);
             logout();
             }}
         >
